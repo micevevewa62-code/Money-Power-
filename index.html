@@ -24,24 +24,11 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #f8fafc;
-            min-height: 100vh;
-            padding-bottom: 85px;
-            color: #1e293b;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8fafc; min-height: 100vh; padding-bottom: 85px; color: #1e293b; }
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
-        
         .relative { position: relative; }
         .hidden { display: none; }
         .text-xs { font-size: 12px; }
@@ -61,401 +48,100 @@
         .cursor-pointer { cursor: pointer; }
         .text-center { text-align: center; }
         
-        .profile-section {
-            background: #ffffff;
-            border-radius: 28px;
-            margin: 20px;
-            padding: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #e2e8f0;
-        }
-        
-        .profile-avatar {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #1e293b;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .verified-badge {
-            position: absolute;
-            bottom: 2px;
-            right: 2px;
-            background: #10b981;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid white;
-        }
-        
-        .balance-card {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 20px;
-            padding: 15px 20px;
-            text-align: right;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        
+        .profile-section { background: #ffffff; border-radius: 28px; margin: 20px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); border: 1px solid #e2e8f0; }
+        .profile-avatar { width: 70px; height: 70px; border-radius: 50%; object-fit: cover; border: 3px solid #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .verified-badge { position: absolute; bottom: 2px; right: 2px; background: #10b981; border-radius: 50%; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; border: 2px solid white; }
+        .balance-card { background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 20px; padding: 15px 20px; text-align: right; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         .balance-card p { color: rgba(255,255,255,0.8); font-size: 12px; }
         .balance-card .balance-amount { color: #ffffff; font-weight: 700; font-size: 24px; }
         
-        .action-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px;
-        }
-        
-        .action-btn {
-            border-radius: 20px;
-            padding: 20px 15px;
-            text-align: center;
-            transition: all 0.3s;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
+        .action-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 20px; }
+        .action-btn { border-radius: 20px; padding: 20px 15px; text-align: center; transition: all 0.3s; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
         .action-btn:active { transform: scale(0.96); }
         .action-btn i { font-size: 40px; margin-bottom: 10px; color: white; }
         .action-btn h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; color: #ffffff; }
         .action-btn p { font-size: 11px; color: rgba(255,255,255,0.85); }
-        .limit-badge {
-            background: rgba(0,0,0,0.25);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 10px;
-            margin-top: 8px;
-            color: #ffffff;
-            display: inline-block;
-        }
-        
+        .limit-badge { background: rgba(0,0,0,0.25); padding: 4px 10px; border-radius: 20px; font-size: 10px; margin-top: 8px; color: #ffffff; display: inline-block; }
         .btn-watch { background: linear-gradient(135deg, #3b82f6, #2563eb); }
         .btn-short { background: linear-gradient(135deg, #22c55e, #16a34a); }
         .btn-monetag { background: linear-gradient(135deg, #a855f7, #9333ea); }
         .btn-sponsor { background: linear-gradient(135deg, #f97316, #ea580c); }
         
-        .spin-section {
-            background: linear-gradient(135deg, #ef4444, #dc2626);
-            border-radius: 28px;
-            margin: 20px;
-            padding: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(239,68,68,0.3);
-        }
-        
+        .spin-section { background: linear-gradient(135deg, #ef4444, #dc2626); border-radius: 28px; margin: 20px; padding: 25px; text-align: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 20px rgba(239,68,68,0.3); }
         .spin-section:active { transform: scale(0.98); }
         .spin-icon { font-size: 60px; margin-bottom: 15px; }
         .spin-section h3 { color: #ffffff; font-weight: 700; font-size: 20px; }
         .spin-section p { color: rgba(255,255,255,0.9); font-size: 13px; }
         
-        .channel-btn {
-            background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            border-radius: 20px;
-            margin: 20px;
-            padding: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(14,165,233,0.3);
-        }
-        
+        .channel-btn { background: linear-gradient(135deg, #0ea5e9, #0284c7); border-radius: 20px; margin: 20px; padding: 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 12px rgba(14,165,233,0.3); }
         .channel-btn:active { transform: scale(0.98); }
         .channel-btn h3 { color: #ffffff; font-weight: 600; font-size: 16px; }
         .channel-btn p { color: rgba(255,255,255,0.85); font-size: 11px; }
         
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 20px;
-            border-top: 1px solid #e2e8f0;
-            box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
-            z-index: 100;
-        }
-        
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            color: #64748b;
-            cursor: pointer;
-            padding: 6px 16px;
-            border-radius: 30px;
-        }
-        
+        .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; display: flex; justify-content: space-around; padding: 10px 20px; border-top: 1px solid #e2e8f0; box-shadow: 0 -4px 20px rgba(0,0,0,0.05); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #64748b; cursor: pointer; padding: 6px 16px; border-radius: 30px; }
         .nav-item.active { color: #1e293b; background: #f1f5f9; }
         .nav-item i { font-size: 22px; }
         .nav-item span { font-size: 11px; font-weight: 500; }
         
         .page { display: none; animation: fadeInUp 0.3s ease; }
         .page.active { display: block; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .glass-card {
-            background: #ffffff;
-            border-radius: 24px;
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-        }
-        
+        .glass-card { background: #ffffff; border-radius: 24px; margin: 20px; padding: 20px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
         .section-title { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
         
-        .code-job-card {
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-            border-radius: 24px;
-            padding: 25px;
-            border: 1px solid #e2e8f0;
-            text-align: center;
-        }
-        
+        .code-job-card { background: linear-gradient(135deg, #f8fafc, #ffffff); border-radius: 24px; padding: 25px; border: 1px solid #e2e8f0; text-align: center; }
         .code-input-area { margin: 20px 0; display: flex; flex-direction: column; gap: 15px; }
-        
-        .code-input {
-            border: 2px solid #e2e8f0;
-            border-radius: 50px;
-            padding: 14px 20px;
-            font-size: 16px;
-            text-align: center;
-            font-family: monospace;
-            background: #ffffff;
-        }
-        
+        .code-input { border: 2px solid #e2e8f0; border-radius: 50px; padding: 14px 20px; font-size: 16px; text-align: center; font-family: monospace; background: #ffffff; }
         .code-input:focus { outline: none; border-color: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
-        
-        .code-submit-btn {
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
+        .code-submit-btn { background: linear-gradient(135deg, #22c55e, #16a34a); color: white; border: none; border-radius: 50px; padding: 14px; font-weight: bold; font-size: 16px; cursor: pointer; }
         .code-submit-btn:active { transform: scale(0.96); }
         .code-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .job-link-btn { background: linear-gradient(135deg, #3b82f6, #2563eb); color: white; border: none; border-radius: 50px; padding: 14px 20px; font-weight: bold; font-size: 16px; margin-bottom: 20px; cursor: pointer; width: 100%; }
+        .cooldown-badge { background: #f97316; color: white; padding: 8px 15px; border-radius: 50px; font-size: 13px; font-weight: 600; display: inline-block; margin-bottom: 15px; }
         
-        .job-link-btn {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 14px 20px;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .cooldown-badge {
-            background: #f97316;
-            color: white;
-            padding: 8px 15px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-        
-        .watch-ads-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            margin-top: 15px;
-        }
-        
-        .watch-ad-item {
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            border-radius: 16px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-        }
-        
+        .watch-ads-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 15px; }
+        .watch-ad-item { background: linear-gradient(135deg, #f97316, #ea580c); border-radius: 16px; padding: 15px; text-align: center; cursor: pointer; }
         .watch-ad-item:active { transform: scale(0.96); }
         .watch-ad-item.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
         .watch-ad-item i { color: #ffffff; font-size: 28px; margin-bottom: 8px; }
         .watch-ad-item p { color: #ffffff; font-size: 12px; }
         .cooldown-timer { font-size: 10px; color: #fef3c7; margin-top: 5px; font-weight: bold; }
         
-        .sponsor-card {
-            background: #ffffff;
-            border-radius: 20px;
-            padding: 15px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid #e2e8f0;
-        }
-        
+        .sponsor-card { background: #ffffff; border-radius: 20px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; border: 1px solid #e2e8f0; }
         .sponsor-info { display: flex; align-items: center; gap: 12px; }
-        .sponsor-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #ffffff;
-        }
+        .sponsor-icon { width: 50px; height: 50px; background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #ffffff; }
         .sponsor-info h4 { font-weight: 600; color: #1e293b; font-size: 14px; }
         .sponsor-info p { font-size: 11px; color: #64748b; }
-        .sponsor-btn {
-            background: #1e293b;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 30px;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 12px;
-            cursor: pointer;
-        }
+        .sponsor-btn { background: #1e293b; border: none; padding: 10px 18px; border-radius: 30px; color: #ffffff; font-weight: 600; font-size: 12px; cursor: pointer; }
         .sponsor-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         
-        .leaderboard-item {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid #e2e8f0;
-        }
-        
-        .leaderboard-rank {
-            width: 40px;
-            height: 40px;
-            background: #1e293b;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #ffffff;
-        }
+        .leaderboard-item { background: #ffffff; border-radius: 16px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #e2e8f0; }
+        .leaderboard-rank { width: 40px; height: 40px; background: #1e293b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ffffff; }
         .rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1e293b; }
-        .leaderboard-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-        }
+        .leaderboard-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
         .leaderboard-name { font-weight: 600; font-size: 14px; color: #1e293b; }
         .leaderboard-amount { font-weight: bold; color: #22c55e; font-size: 16px; }
         
-        .withdraw-input {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 14px;
-            width: 100%;
-            margin-bottom: 12px;
-        }
-        .withdraw-btn {
-            background: #1e293b;
-            border: none;
-            padding: 14px;
-            border-radius: 16px;
-            color: white;
-            font-weight: bold;
-            width: 100%;
-            cursor: pointer;
-        }
+        .withdraw-input { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px; width: 100%; margin-bottom: 12px; }
+        .withdraw-btn { background: #1e293b; border: none; padding: 14px; border-radius: 16px; color: white; font-weight: bold; width: 100%; cursor: pointer; }
         
-        .toast-alert {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1e293b;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            z-index: 150;
-            animation: slideUp 0.3s ease;
-            white-space: nowrap;
-        }
+        .toast-alert { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%); background: #1e293b; color: white; padding: 12px 24px; border-radius: 50px; z-index: 150; animation: slideUp 0.3s ease; white-space: nowrap; }
         .toast-alert.warning { background: #f97316; }
         .toast-alert.error { background: #ef4444; }
         .toast-alert.success { background: #22c55e; }
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
         
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-        
-        .wheel-page-container {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: #ffffff;
-            z-index: 300;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+        .wheel-page-container { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #ffffff; z-index: 300; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; }
         .wheel-page-container.active { display: flex; }
         .wheel-canvas { width: 300px; height: 300px; margin: 20px auto; }
-        .close-wheel {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #f1f5f9;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        .spin-btn-large {
-            background: #1e293b;
-            border: none;
-            padding: 15px 50px;
-            border-radius: 50px;
-            color: white;
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 25px;
-            cursor: pointer;
-        }
+        .close-wheel { position: absolute; top: 20px; right: 20px; background: #f1f5f9; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .spin-btn-large { background: #1e293b; border: none; padding: 15px 50px; border-radius: 50px; color: white; font-weight: bold; font-size: 18px; margin-top: 25px; cursor: pointer; }
         .flex-between { display: flex; align-items: center; justify-content: space-between; }
         .flex-row { display: flex; align-items: center; gap: 16px; }
         .cooldown-text { font-size: 10px; color: #f97316; margin-top: 5px; }
+        .info-note { font-size: 12px; color: #64748b; margin-top: 15px; padding: 10px; background: #f1f5f9; border-radius: 12px; }
     </style>
 </head>
 <body>
@@ -480,16 +166,13 @@
                     </div>
                 </div>
             </div>
-            
             <div class="action-grid">
                 <div class="action-btn btn-watch" onclick="openWatchAdsPage()"><i class="fas fa-play-circle"></i><h3>ওয়াচ অ্যাড</h3><p>দেখুন এবং আর্ন করুন</p><div class="limit-badge">১০টি অ্যাড</div></div>
                 <div class="action-btn btn-short" onclick="openCodeJobPage()"><i class="fas fa-code"></i><h3>শর্ট অ্যাড</h3><p>কোড সাবমিট করে আয়</p><div class="limit-badge">+১৫ টাকা</div></div>
                 <div class="action-btn btn-monetag" onclick="showMonetagAd()"><i class="fas fa-tv"></i><h3>ভিডিও অ্যাড</h3><p>+৳10 প্রতি অ্যাড</p><div class="limit-badge"><span id="monetag-count">0</span>/৩০ আজ</div></div>
                 <div class="action-btn btn-sponsor" onclick="navigateTo('sponsor-page')"><i class="fas fa-gift"></i><h3>স্পন্সর</h3><p>বোনাস পান</p><div class="limit-badge">৩টি অফার</div></div>
             </div>
-            
             <div class="spin-section" onclick="openWheelPage()"><div class="spin-icon">🎡</div><h3>লাকি হুইল</h3><p>স্পিন করে জিতে নিন ১০-৫০০ টাকা!</p><div class="limit-badge mt-2">স্পিন করতে অ্যাড দেখুন</div></div>
-            
             <div class="channel-btn" onclick="joinTelegramChannel()"><div class="flex-row"><i class="fab fa-telegram text-xl"></i><div><h3>অফিসিয়াল চ্যানেল</h3><p>সব আপডেট পেতে জয়েন করুন</p></div></div><i class="fas fa-arrow-right"></i></div>
         </div>
         
@@ -505,9 +188,7 @@
                         <input type="text" id="code-input-field" class="code-input" placeholder="এখানে কোড লিখুন" autocomplete="off">
                         <button id="code-submit-btn" class="code-submit-btn" onclick="submitCodeJob()"><i class="fas fa-check-circle mr-2"></i> কোড সাবমিট করুন</button>
                     </div>
-                    <div class="info-note" style="font-size:12px; color:#64748b; margin-top:15px; padding:10px; background:#f1f5f9; border-radius:12px;">
-                        <i class="fas fa-info-circle"></i> সঠিক কোড: MP2025, GOLD100, BONUSBD, WINNER15, MONEYBD, LUCKY777, CODE200, EARNBD, FASTCASH, MEGABONUS<br>⏰ প্রতি ৮ ঘন্টা পর পর একটি কোড সাবমিট করতে পারবেন
-                    </div>
+                    <div class="info-note"><i class="fas fa-info-circle"></i> সঠিক কোড পেতে কাজের লিংকে যান। প্রতি ৮ ঘন্টা পর পর একটি কোড সাবমিট করতে পারবেন।</div>
                 </div>
             </div>
         </div>
@@ -534,26 +215,71 @@
     </div>
     
     <script>
-        // Configuration
-        const CONFIG = {
-            app: { minWithdrawal: 2000, dailyAdLimit: { monetag: 30 }, adReward: 10, sponsorBonus: 20 },
-            monetag: { enabled: true, zones: ['9730885', '9500387', '9715370'] },
-            social: { telegram: "https://t.me/+fXJwdu2jQ4A0ZTM9", support: "https://t.me/arning_hubbot" },
-            codeJobCooldownHours: 8
+        // ==================== ALL CONFIGURATIONS CENTRALIZED (Hidden from user) ====================
+        const APP_CONFIG = {
+            // App Settings
+            app: {
+                minWithdrawal: 2000,
+                dailyMonetagLimit: 30,
+                adReward: 10,
+                sponsorBonus: 20,
+                watchAdCooldownHours: 10,
+                codeJobCooldownHours: 8,
+                channelJoinBonus: 20,
+                spinMinBalance: 1000
+            },
+            // Monetag Ad Zones
+            monetag: {
+                enabled: true,
+                zones: ['9730885', '9500387', '9715370']
+            },
+            // AdsGram Block ID (for wheel spin ad)
+            adsgram: {
+                blockId: "int-25736"
+            },
+            // Social Links
+            social: {
+                telegramChannel: "https://t.me/+fXJwdu2jQ4A0ZTM9",
+                supportBot: "https://t.me/arning_hubbot",
+                jobLink: "https://omg10.com/4/9717825"
+            },
+            // Valid Codes for Code Job (Secret - Not visible to users)
+            validCodes: ["MP2025", "GOLD100", "BONUSBD", "WINNER15", "MONEYBD", "LUCKY777", "CODE200", "EARNBD", "FASTCASH", "MEGABONUS"],
+            // Watch Ads Links
+            watchAdLinks: [
+                "https://omg10.com/4/9717825", "https://omg10.com/4/9429975", "https://omg10.com/4/9446627",
+                "https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975",
+                "https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b",
+                "https://omg10.com/4/9397622", "https://omg10.com/4/10338067",
+                "https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c",
+                "https://omg10.com/4/9570590", "https://omg10.com/4/9429981"
+            ],
+            // Sponsors
+            sponsors: [
+                { name: "ভিডিও ডাউনলোডার", icon: "fas fa-download", link: "https://t.me/videodownloadertgxbot", reward: 20 },
+                { name: "মুভি স্ট্রিমিং", icon: "fas fa-film", link: "https://t.me/movieflex00bot", reward: 20 },
+                { name: "অ্যাড অফার", icon: "fab fa-facebook", link: "https://omg10.com/4/9397622", reward: 20 }
+            ],
+            // Wheel Segments
+            wheelSegments: [
+                { value: 10, color: "#FF6B6B", label: "৳10" }, { value: 20, color: "#4ECDC4", label: "৳20" },
+                { value: 50, color: "#45B7D1", label: "৳50" }, { value: 100, color: "#96CEB4", label: "৳100" },
+                { value: 200, color: "#FFEAA7", label: "৳200" }, { value: 500, color: "#DDA0DD", label: "৳500" },
+                { value: 30, color: "#98D8C8", label: "৳30" }, { value: 15, color: "#F7B05E", label: "৳15" }
+            ],
+            // Leaderboard Fake Names
+            fakeLeaderboardNames: ["রাকিব হাসান", "সুমাইয়া আক্তার", "মেহেদী হাসান", "তাহমিনা সুলতানা", "শাকিব খান", "নুসরাত জাহান", "তানভির আহমেদ", "সাবিনা ইয়াসমিন", "আরিফ চৌধুরী", "ফারজানা আক্তার"]
         };
         
-        const VALID_CODES = ["MP2026"];
-        const SEGMENTS = [
-            { value: 10, color: "#FF6B6B", label: "৳10" }, { value: 20, color: "#4ECDC4", label: "৳20" }, { value: 50, color: "#45B7D1", label: "৳50" },
-            { value: 100, color: "#96CEB4", label: "৳100" }, { value: 200, color: "#FFEAA7", label: "৳200" }, { value: 500, color: "#DDA0DD", label: "৳500" },
-            { value: 30, color: "#98D8C8", label: "৳30" }, { value: 15, color: "#F7B05E", label: "৳15" }
-        ];
-        
-        let currentUser = null, userData = null, monetagCount = 0, currentZoneIndex = 0, isSpinning = false, currentAngle = 0, pendingSpin = false;
+        // ==================== GLOBAL VARIABLES ====================
+        let currentUser = null, userData = null, monetagCount = 0, currentZoneIndex = 0;
+        let isSpinning = false, currentAngle = 0, pendingSpin = false;
         let wheelCanvas, ctx;
         let supportClicked = false;
+        let watchAdPending = {};
         const tg = window.Telegram.WebApp;
         
+        // ==================== UTILITY FUNCTIONS ====================
         function showToast(msg, type = "info") {
             let toast = document.createElement("div");
             toast.className = `toast-alert ${type}`;
@@ -561,8 +287,10 @@
             document.body.appendChild(toast);
             setTimeout(() => toast.remove(), 3000);
         }
+        
         function playVibration() { if (navigator.vibrate) navigator.vibrate(200); }
         
+        // ==================== USER DATA MANAGEMENT ====================
         function initTelegramApp() {
             tg.ready(); tg.expand();
             const user = tg.initDataUnsafe.user;
@@ -616,13 +344,14 @@
             if (currentUser.photoUrl) document.getElementById("profile-avatar").src = currentUser.photoUrl;
             if (userData.isVerified) document.getElementById("verified-badge-icon").classList.remove("hidden");
         }
+        
         function updateAdCounts() { document.getElementById("monetag-count").textContent = monetagCount; }
         
-        // Code Job with 8-hour cooldown
+        // ==================== CODE JOB WITH 8-HOUR COOLDOWN ====================
         function updateCodeJobCooldownUI() {
             const lastSubmit = userData.lastCodeSubmitTime || 0;
             const now = Date.now();
-            const cooldownMs = CONFIG.codeJobCooldownHours * 60 * 60 * 1000;
+            const cooldownMs = APP_CONFIG.app.codeJobCooldownHours * 60 * 60 * 1000;
             const remaining = Math.max(0, cooldownMs - (now - lastSubmit));
             const statusDiv = document.getElementById("code-job-cooldown-status");
             const submitBtn = document.getElementById("code-submit-btn");
@@ -643,21 +372,21 @@
         }
         
         window.openCodeJobPage = function() { navigateTo("codejob-page"); updateCodeJobCooldownUI(); };
-        window.openJobLink = function() { tg.openLink("https://omg10.com/4/9717825"); showToast("কাজের লিংকে যান এবং কোড সংগ্রহ করুন", "info"); };
+        window.openJobLink = function() { tg.openLink(APP_CONFIG.social.jobLink); showToast("কাজের লিংকে যান এবং কোড সংগ্রহ করুন", "info"); };
         
         window.submitCodeJob = function() {
             const lastSubmit = userData.lastCodeSubmitTime || 0;
-            const cooldownMs = CONFIG.codeJobCooldownHours * 60 * 60 * 1000;
+            const cooldownMs = APP_CONFIG.app.codeJobCooldownHours * 60 * 60 * 1000;
             if (Date.now() - lastSubmit < cooldownMs) {
                 const remaining = Math.ceil((cooldownMs - (Date.now() - lastSubmit)) / 3600000);
-                showToast(`প্রতি ${CONFIG.codeJobCooldownHours} ঘন্টায় একটি কোড সাবমিট করতে পারবেন। ${remaining} ঘন্টা বাকি`, "warning");
+                showToast(`প্রতি ${APP_CONFIG.app.codeJobCooldownHours} ঘন্টায় একটি কোড সাবমিট করতে পারবেন। ${remaining} ঘন্টা বাকি`, "warning");
                 return;
             }
             
             const inputCode = document.getElementById("code-input-field").value.trim().toUpperCase();
             if (!inputCode) { showToast("কোড লিখুন!", "warning"); return; }
             if (userData.usedCodes.includes(inputCode)) { showToast("এই কোড আপনি ইতিমধ্যে ব্যবহার করেছেন!", "error"); return; }
-            if (VALID_CODES.includes(inputCode)) {
+            if (APP_CONFIG.validCodes.includes(inputCode)) {
                 userData.usedCodes.push(inputCode);
                 userData.lastCodeSubmitTime = Date.now();
                 userData.balance += 15;
@@ -673,85 +402,73 @@
             }
         };
         
-        // Watch Ads
-        const WATCH_ADS_LINKS = [
-            "https://omg10.com/4/9717825", "https://omg10.com/4/9429975", "https://omg10.com/4/9446627",
-            "https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975",
-            "https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b",
-            "https://omg10.com/4/9397622", "https://omg10.com/4/10338067",
-            "https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c",
-            "https://omg10.com/4/9570590", "https://omg10.com/4/9429981"
-        ];
-        let watchAdPending = {};
-        
+        // ==================== WATCH ADS ====================
         function loadWatchAds() {
             const container = document.getElementById("watch-ads-grid");
             if (!container) return;
             container.innerHTML = "";
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < APP_CONFIG.watchAdLinks.length; i++) {
                 let cooldownEnd = (userData.watchAdCooldowns && userData.watchAdCooldowns[`ad_${i}`]) || 0;
                 let now = Date.now();
                 let isOnCooldown = cooldownEnd > now;
                 let remaining = isOnCooldown ? Math.ceil((cooldownEnd - now) / 1000) : 0;
                 let hrs = Math.floor(remaining / 3600), mins = Math.floor((remaining % 3600) / 60), secs = remaining % 60;
                 let cdText = isOnCooldown ? (hrs > 0 ? `${hrs}ঘ ${mins}মি` : mins > 0 ? `${mins}মি ${secs}সে` : `${secs}সে`) : "";
-                container.innerHTML += `<div class="watch-ad-item ${isOnCooldown ? 'disabled' : ''}" onclick="${isOnCooldown ? '' : `watchAdWithCooldown(${i})`}"><i class="fas fa-play-circle"></i><p class="font-bold">অ্যাড ${i + 1}</p><p class="text-xs">+৳10</p>${isOnCooldown ? `<div class="cooldown-timer">⏰ ${cdText} পর</div>` : ''}</div>`;
+                container.innerHTML += `<div class="watch-ad-item ${isOnCooldown ? 'disabled' : ''}" onclick="${isOnCooldown ? '' : `watchAdWithCooldown(${i})`}"><i class="fas fa-play-circle"></i><p class="font-bold">অ্যাড ${i + 1}</p><p class="text-xs">+৳${APP_CONFIG.app.adReward}</p>${isOnCooldown ? `<div class="cooldown-timer">⏰ ${cdText} পর</div>` : ''}</div>`;
             }
         }
+        
         function updateWatchAdTimers() { loadWatchAds(); }
+        
         window.watchAdWithCooldown = function(index) {
             let cooldownEnd = (userData.watchAdCooldowns && userData.watchAdCooldowns[`ad_${index}`]) || 0;
             if (cooldownEnd > Date.now()) { showToast("অ্যাডটি কুলডাউনে আছে!", "warning"); return; }
-            tg.openLink(WATCH_ADS_LINKS[index]);
+            tg.openLink(APP_CONFIG.watchAdLinks[index]);
             showToast("অ্যাড দেখার জন্য ১৫ সেকেন্ড অপেক্ষা করুন...", "info");
             if (watchAdPending[index]) clearTimeout(watchAdPending[index]);
             watchAdPending[index] = setTimeout(() => {
-                userData.balance += 10;
-                userData.watchAdCooldowns[`ad_${index}`] = Date.now() + (10 * 60 * 60 * 1000);
+                userData.balance += APP_CONFIG.app.adReward;
+                userData.watchAdCooldowns[`ad_${index}`] = Date.now() + (APP_CONFIG.app.watchAdCooldownHours * 60 * 60 * 1000);
                 saveUserToStorage();
                 updateUI();
                 loadWatchAds();
                 playVibration();
-                showToast(`🎉 অ্যাড ${index + 1} দেখার জন্য ১০ টাকা পেলেন!`, "success");
+                showToast(`🎉 অ্যাড ${index + 1} দেখার জন্য ${APP_CONFIG.app.adReward} টাকা পেলেন!`, "success");
                 delete watchAdPending[index];
             }, 15000);
         };
         
-        // Monetag Video Ad
+        // ==================== MONETAG VIDEO AD ====================
         async function showMonetagAd() {
-            if (monetagCount >= 30) { showToast("আজকের ভিডিও অ্যাড সীমা শেষ!", "warning"); return; }
+            if (monetagCount >= APP_CONFIG.app.dailyMonetagLimit) { showToast("আজকের ভিডিও অ্যাড সীমা শেষ!", "warning"); return; }
             showToast("ভিডিও অ্যাড লোড হচ্ছে...", "info");
-            const zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
+            const zone = APP_CONFIG.monetag.zones[currentZoneIndex % APP_CONFIG.monetag.zones.length];
             const adFunc = `show_${zone}`;
             if (typeof window[adFunc] === 'function') {
                 try {
                     await window[adFunc]();
-                    monetagCount++; currentZoneIndex++; userData.balance += 10;
+                    monetagCount++; currentZoneIndex++; userData.balance += APP_CONFIG.app.adReward;
                     saveUserToStorage(); updateUI(); updateAdCounts(); playVibration();
-                    showToast("🎉 ১০ টাকা উপার্জন!", "success");
+                    showToast(`🎉 ${APP_CONFIG.app.adReward} টাকা উপার্জন!`, "success");
                 } catch (e) { showToast("অ্যাড ত্রুটি", "error"); }
             } else { showToast("অ্যাড সিস্টেম প্রস্তুত হচ্ছে", "warning"); }
         }
         
-        // Sponsors
-        const SPONSORS = [
-            { name: "ভিডিও ডাউনলোডার", icon: "fas fa-download", link: "https://t.me/videodownloadertgxbot", reward: 20 },
-            { name: "মুভি স্ট্রিমিং", icon: "fas fa-film", link: "https://t.me/movieflex00bot", reward: 20 },
-            { name: "অ্যাড অফার", icon: "fab fa-facebook", link: "https://omg10.com/4/9397622", reward: 20 }
-        ];
+        // ==================== SPONSORS ====================
         function loadSponsors() {
             let container = document.getElementById("sponsor-list");
             if (!container) return;
             container.innerHTML = "";
-            SPONSORS.forEach((sp, i) => {
+            APP_CONFIG.sponsors.forEach((sp, i) => {
                 let completed = userData.sponsorCompletions?.[`sponsor_${i}`] || 0;
                 let cooldown = completed ? Math.max(0, 24 * 60 * 60 * 1000 - (Date.now() - completed)) : 0;
                 let hrs = Math.floor(cooldown / 3600000), mins = Math.floor((cooldown % 3600000) / 60000);
                 container.innerHTML += `<div class="sponsor-card"><div class="sponsor-info"><div class="sponsor-icon"><i class="${sp.icon}"></i></div><div><h4>${sp.name}</h4><p>+${sp.reward} টাকা</p>${cooldown > 0 ? `<p class="cooldown-text">⏰ ${hrs}ঘ ${mins}মি পরে</p>` : ''}</div></div><button class="sponsor-btn" onclick="claimSponsor(${i})" ${cooldown > 0 ? 'disabled' : ''}>${cooldown > 0 ? `${hrs}ঘ পরে` : 'জয়েন করুন'}</button></div>`;
             });
         }
+        
         window.claimSponsor = function(idx) {
-            let sp = SPONSORS[idx];
+            let sp = APP_CONFIG.sponsors[idx];
             tg.openLink(sp.link);
             showToast("স্পন্সরে ৫ সেকেন্ড পর বোনাস পাবেন", "info");
             setTimeout(() => {
@@ -762,8 +479,7 @@
             }, 5000);
         };
         
-        // Leaderboard with daily auto change
-        const FAKE_NAMES = ["রাকিব হাসান", "সুমাইয়া আক্তার", "মেহেদী হাসান", "তাহমিনা সুলতানা", "শাকিব খান", "নুসরাত জাহান", "তানভির আহমেদ", "সাবিনা ইয়াসমিন", "আরিফ চৌধুরী", "ফারজানা আক্তার"];
+        // ==================== LEADERBOARD (Daily Auto Change) ====================
         function loadLeaderboard() {
             let todayStr = new Date().toISOString().split('T')[0];
             let seed = 0;
@@ -771,7 +487,7 @@
             let fakeBalances = [28450, 21780, 18920, 15430, 12890, 10250, 8920, 7350, 5680, 4320];
             let randomized = [...fakeBalances];
             for (let i = randomized.length - 1; i > 0; i--) { let j = (seed + i) % (i + 1); [randomized[i], randomized[j]] = [randomized[j], randomized[i]]; }
-            let fakeUsers = FAKE_NAMES.map((name, idx) => ({ name, balance: randomized[idx] + (seed % 500), avatar: name.charAt(0) }));
+            let fakeUsers = APP_CONFIG.fakeLeaderboardNames.map((name, idx) => ({ name, balance: randomized[idx] + (seed % 500), avatar: name.charAt(0) }));
             let realUsers = [];
             for (let i = 0; i < localStorage.length; i++) {
                 let key = localStorage.key(i);
@@ -788,17 +504,18 @@
             }
         }
         
-        // Withdrawal
+        // ==================== WITHDRAWAL ====================
         function loadWithdrawalHistory() {
             let history = JSON.parse(localStorage.getItem(`withdrawals_${currentUser?.id}`) || "[]");
             let container = document.getElementById("withdrawal-history-list");
             if (container) container.innerHTML = history.length === 0 ? '<p class="text-center" style="color:#64748b;">কোন ইতিহাস নেই</p>' : history.map(w => `<div style="display:flex; justify-content:space-between; padding:12px; background:#f8fafc; border-radius:12px; margin-bottom:8px;"><div><span style="font-weight:600;">${w.amount} টাকা</span><span style="font-size:11px; display:block;">${w.method}</span></div><span style="color:${w.status === 'pending' ? '#f97316' : '#22c55e'};">${w.status === 'pending' ? 'প্রসেসিং' : 'অনুমোদিত'}</span></div>`).join("");
         }
+        
         function handleWithdrawal() {
             let amount = parseInt(document.getElementById("withdraw-amount").value);
             let method = document.getElementById("withdraw-method").value;
             let paymentDetail = document.getElementById("payment-detail-input")?.value;
-            if (!amount || amount < 2000) { showToast("ন্যূনতম উত্তোলন ২০০০ টাকা", "warning"); return; }
+            if (!amount || amount < APP_CONFIG.app.minWithdrawal) { showToast(`ন্যূনতম উত্তোলন ${APP_CONFIG.app.minWithdrawal} টাকা`, "warning"); return; }
             if (amount > userData.balance) { showToast("ব্যালেন্স অপর্যাপ্ত", "error"); return; }
             if (!method || !paymentDetail) { showToast("সব তথ্য পূরণ করুন", "warning"); return; }
             let withdrawals = JSON.parse(localStorage.getItem(`withdrawals_${currentUser.id}`) || "[]");
@@ -810,50 +527,55 @@
             loadWithdrawalHistory();
             showToast("উত্তোলন রিকোয়েস্ট জমা হয়েছে। ২৪-৪৮ ঘন্টার মধ্যে প্রসেস হবে।", "success");
         }
+        
         function updateDynamicPaymentFields() {
             let method = document.getElementById("withdraw-method").value;
             let placeholder = method === "Bkash" ? "বিকাশ নম্বর" : method === "Nagad" ? "নগদ নম্বর" : method === "Rocket" ? "রকেট নম্বর" : "বিবরণ লিখুন";
             document.getElementById("payment-details-container").innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="withdraw-input mt-2">`;
         }
         
-        // Support (once only)
+        // ==================== SUPPORT (ONLY ONCE) ====================
         window.openSupportOnce = function() {
             if (supportClicked) { showToast("আপনি ইতিমধ্যে সাপোর্টে ক্লিক করেছেন!", "warning"); return; }
             supportClicked = true;
-            tg.openLink(CONFIG.social.support);
+            tg.openLink(APP_CONFIG.social.supportBot);
             showToast("সাপোর্টে সংযুক্ত করা হচ্ছে...", "info");
         };
         
-        // Wheel
+        // ==================== WHEEL ====================
         function initWheel() { wheelCanvas = document.getElementById("wheelCanvas"); if (wheelCanvas) { ctx = wheelCanvas.getContext("2d"); drawWheel(); } }
+        
         function drawWheel() {
             if (!ctx) return;
-            let size = 300, center = 150, radius = 150, angleStep = (Math.PI * 2) / SEGMENTS.length;
+            let size = 300, center = 150, radius = 150, angleStep = (Math.PI * 2) / APP_CONFIG.wheelSegments.length;
             ctx.clearRect(0, 0, size, size);
-            for (let i = 0; i < SEGMENTS.length; i++) {
+            for (let i = 0; i < APP_CONFIG.wheelSegments.length; i++) {
                 let start = currentAngle + i * angleStep, end = start + angleStep;
                 ctx.beginPath(); ctx.moveTo(center, center); ctx.arc(center, center, radius, start, end);
-                ctx.fillStyle = SEGMENTS[i].color; ctx.fill(); ctx.strokeStyle = "white"; ctx.stroke();
+                ctx.fillStyle = APP_CONFIG.wheelSegments[i].color; ctx.fill(); ctx.strokeStyle = "white"; ctx.stroke();
                 ctx.save(); ctx.translate(center, center); ctx.rotate(start + angleStep / 2);
-                ctx.fillStyle = "#1e293b"; ctx.font = "bold 14px Inter"; ctx.fillText(SEGMENTS[i].label, radius - 40, 10);
+                ctx.fillStyle = "#1e293b"; ctx.font = "bold 14px Inter"; ctx.fillText(APP_CONFIG.wheelSegments[i].label, radius - 40, 10);
                 ctx.restore();
             }
             ctx.beginPath(); ctx.arc(center, center, 25, 0, Math.PI * 2); ctx.fillStyle = "white"; ctx.fill();
             ctx.fillStyle = "#1e293b"; ctx.font = "bold 28px Arial"; ctx.fillText("🎡", center - 12, center + 10);
         }
-        window.openWheelPage = function() { if (userData.balance < 1000) { showToast("স্পিন করতে ১০০০ টাকা লাগবে", "error"); return; } document.getElementById("wheel-page").classList.add("active"); };
+        
+        window.openWheelPage = function() { if (userData.balance < APP_CONFIG.app.spinMinBalance) { showToast(`স্পিন করতে ${APP_CONFIG.app.spinMinBalance} টাকা লাগবে`, "error"); return; } document.getElementById("wheel-page").classList.add("active"); };
         window.closeWheelPage = function() { document.getElementById("wheel-page").classList.remove("active"); };
+        
         window.startSpin = async function() {
             if (isSpinning) return;
             pendingSpin = true;
             try {
-                if (typeof Adsgram !== 'undefined') { let ad = Adsgram.init({ blockId: "int-25736" }); if (ad) await ad.show(); executeSpin(); return; }
+                if (typeof Adsgram !== 'undefined') { let ad = Adsgram.init({ blockId: APP_CONFIG.adsgram.blockId }); if (ad) await ad.show(); executeSpin(); return; }
             } catch (e) { }
-            let zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
+            let zone = APP_CONFIG.monetag.zones[currentZoneIndex % APP_CONFIG.monetag.zones.length];
             let adFunc = `show_${zone}`;
             if (typeof window[adFunc] === 'function') { await window[adFunc](); currentZoneIndex++; executeSpin(); return; }
             showToast("অ্যাড সমস্যা", "error"); pendingSpin = false;
         };
+        
         function executeSpin() {
             if (!pendingSpin) return;
             pendingSpin = false; isSpinning = true;
@@ -864,7 +586,7 @@
                 currentAngle = startAngle + targetAngle * ease; drawWheel();
                 if (progress < 1) requestAnimationFrame(animate);
                 else {
-                    let final = currentAngle % (Math.PI * 2), idx = Math.floor(final / ((Math.PI * 2) / SEGMENTS.length)), reward = SEGMENTS[idx].value;
+                    let final = currentAngle % (Math.PI * 2), idx = Math.floor(final / ((Math.PI * 2) / APP_CONFIG.wheelSegments.length)), reward = APP_CONFIG.wheelSegments[idx].value;
                     userData.balance += reward; saveUserToStorage(); updateUI(); canvasConfetti({ particleCount: 200, spread: 100 }); playVibration();
                     showToast(`🎉 জিতেছেন ${reward} টাকা!`, "success"); isSpinning = false; btn.disabled = false;
                 }
@@ -872,7 +594,7 @@
             requestAnimationFrame(animate);
         }
         
-        // Navigation
+        // ==================== NAVIGATION ====================
         function navigateTo(pageId) {
             document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
             document.getElementById(pageId).classList.add("active");
@@ -883,13 +605,16 @@
             if (pageId === "watch-ads-page") loadWatchAds();
             if (pageId === "codejob-page") updateCodeJobCooldownUI();
         }
+        
         window.navigateTo = navigateTo;
         window.openWatchAdsPage = () => navigateTo("watch-ads-page");
+        
         window.joinTelegramChannel = function() {
-            tg.openLink(CONFIG.social.telegram);
-            setTimeout(() => { userData.balance += 20; saveUserToStorage(); updateUI(); showToast("চ্যানেল জয়েন বোনাস ২০ টাকা!", "success"); }, 5000);
+            tg.openLink(APP_CONFIG.social.telegramChannel);
+            setTimeout(() => { userData.balance += APP_CONFIG.app.channelJoinBonus; saveUserToStorage(); updateUI(); showToast(`চ্যানেল জয়েন বোনাস ${APP_CONFIG.app.channelJoinBonus} টাকা!`, "success"); }, 5000);
         };
         
+        // ==================== INITIALIZATION ====================
         window.onload = () => {
             initWheel();
             initTelegramApp();
@@ -897,6 +622,7 @@
             document.getElementById("withdraw-method")?.addEventListener("change", updateDynamicPaymentFields);
             setInterval(() => { if (currentUser) loadLeaderboard(); }, 30000);
         };
+        
         window.showMonetagAd = showMonetagAd;
     </script>
 </body>
