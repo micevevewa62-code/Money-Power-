@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Money Power</title>
+    <title>Money Power - আর্নিং অ্যাপ</title>
     
-    <!-- AdsGram Ad Script -->
+    <!-- Telegram WebApp & AdsGram -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
     
@@ -33,44 +32,42 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background: #FFFFFF;
+            background: #f8fafc;
             min-height: 100vh;
             padding-bottom: 85px;
-            color: #1a1a2e;
+            color: #1e293b;
         }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 5px;
-        }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
         
-        ::-webkit-scrollbar-track {
-            background: #f0f0f0;
-            border-radius: 10px;
-        }
+        .relative { position: relative; }
+        .hidden { display: none; }
+        .text-xs { font-size: 12px; }
+        .text-sm { font-size: 13px; }
+        .text-xl { font-size: 20px; }
+        .text-2xl { font-size: 24px; }
+        .text-3xl { font-size: 28px; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .mb-2 { margin-bottom: 8px; }
+        .mb-3 { margin-bottom: 12px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .mr-2 { margin-right: 8px; }
+        .cursor-pointer { cursor: pointer; }
+        .text-center { text-align: center; }
         
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 10px;
-        }
-        
-        /* Card Styles */
-        .card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eef2f6;
-            transition: all 0.3s ease;
-        }
-        
-        /* Profile Section */
         .profile-section {
-            background: #FFFFFF;
+            background: #ffffff;
             border-radius: 28px;
             margin: 20px;
             padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eef2f6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
         }
         
         .profile-avatar {
@@ -78,15 +75,15 @@
             height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #1a1a2e;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 3px solid #1e293b;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .verified-badge {
             position: absolute;
             bottom: 2px;
             right: 2px;
-            background: #1a1a2e;
+            background: #10b981;
             border-radius: 50%;
             width: 22px;
             height: 22px;
@@ -96,25 +93,17 @@
             border: 2px solid white;
         }
         
-        /* Balance Card */
         .balance-card {
-            background: #1a1a2e;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
             border-radius: 20px;
             padding: 15px 20px;
             text-align: right;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        .balance-card p {
-            color: rgba(255, 255, 255, 0.8);
-        }
+        .balance-card p { color: rgba(255,255,255,0.8); font-size: 12px; }
+        .balance-card .balance-amount { color: #ffffff; font-weight: 700; font-size: 24px; }
         
-        .balance-card .balance-amount {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-        
-        /* Action Grid - Different Color Buttons */
         .action-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -128,80 +117,46 @@
             text-align: center;
             transition: all 0.3s;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         
-        .action-btn:active {
-            transform: scale(0.96);
-        }
-        
-        .action-btn i {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-        
-        .action-btn h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #FFFFFF;
-        }
-        
-        .action-btn p {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
+        .action-btn:active { transform: scale(0.96); }
+        .action-btn i { font-size: 40px; margin-bottom: 10px; color: white; }
+        .action-btn h3 { font-size: 16px; font-weight: 700; margin-bottom: 5px; color: #ffffff; }
+        .action-btn p { font-size: 11px; color: rgba(255,255,255,0.85); }
         .limit-badge {
-            display: inline-block;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0,0,0,0.25);
             padding: 4px 10px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             margin-top: 8px;
-            color: #FFFFFF;
-            font-weight: 500;
+            color: #ffffff;
+            display: inline-block;
         }
         
-        /* Button Colors */
-        .btn-watch { background: linear-gradient(135deg, #2196F3, #1976D2); }
-        .btn-short { background: linear-gradient(135deg, #4CAF50, #388E3C); }
-        .btn-monetag { background: linear-gradient(135deg, #9C27B0, #7B1FA2); }
-        .btn-sponsor { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .btn-watch { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+        .btn-short { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .btn-monetag { background: linear-gradient(135deg, #a855f7, #9333ea); }
+        .btn-sponsor { background: linear-gradient(135deg, #f97316, #ea580c); }
         
-        /* Spin Section */
         .spin-section {
-            background: linear-gradient(135deg, #F44336, #D32F2F);
+            background: linear-gradient(135deg, #ef4444, #dc2626);
             border-radius: 28px;
             margin: 20px;
             padding: 25px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(244, 67, 54, 0.3);
+            box-shadow: 0 4px 20px rgba(239,68,68,0.3);
         }
         
-        .spin-section:active {
-            transform: scale(0.98);
-        }
+        .spin-section:active { transform: scale(0.98); }
+        .spin-icon { font-size: 60px; margin-bottom: 15px; }
+        .spin-section h3 { color: #ffffff; font-weight: 700; font-size: 20px; }
+        .spin-section p { color: rgba(255,255,255,0.9); font-size: 13px; }
         
-        .spin-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
-        
-        .spin-section h3 {
-            color: #FFFFFF;
-            font-weight: 700;
-        }
-        
-        .spin-section p {
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        /* Channel Button */
         .channel-btn {
-            background: linear-gradient(135deg, #0088cc, #006699);
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
             border-radius: 20px;
             margin: 20px;
             padding: 18px;
@@ -210,38 +165,24 @@
             justify-content: space-between;
             cursor: pointer;
             transition: all 0.3s;
-            box-shadow: 0 4px 12px rgba(0, 136, 204, 0.3);
+            box-shadow: 0 4px 12px rgba(14,165,233,0.3);
         }
         
-        .channel-btn:active {
-            transform: scale(0.98);
-        }
+        .channel-btn:active { transform: scale(0.98); }
+        .channel-btn h3 { color: #ffffff; font-weight: 600; font-size: 16px; }
+        .channel-btn p { color: rgba(255,255,255,0.85); font-size: 11px; }
         
-        .channel-btn h3 {
-            color: #FFFFFF;
-            font-weight: 600;
-        }
-        
-        .channel-btn p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        .channel-btn i {
-            color: #FFFFFF;
-        }
-        
-        /* Bottom Navigation */
         .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: #FFFFFF;
+            background: #ffffff;
             display: flex;
             justify-content: space-around;
-            padding: 12px 20px;
-            border-top: 1px solid #eef2f6;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+            padding: 10px 20px;
+            border-top: 1px solid #e2e8f0;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.05);
             z-index: 100;
         }
         
@@ -250,213 +191,95 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
-            color: #6c757d;
-            transition: all 0.3s;
+            color: #64748b;
             cursor: pointer;
-            padding: 5px 15px;
+            padding: 6px 16px;
             border-radius: 30px;
         }
         
-        .nav-item.active {
-            color: #1a1a2e;
-            background: #f8f9fa;
-        }
+        .nav-item.active { color: #1e293b; background: #f1f5f9; }
+        .nav-item i { font-size: 22px; }
+        .nav-item span { font-size: 11px; font-weight: 500; }
         
-        .nav-item i {
-            font-size: 24px;
-        }
-        
-        .nav-item span {
-            font-size: 11px;
-            font-weight: 500;
-        }
-        
-        .support-nav {
-            color: #6c757d;
-        }
-        
-        /* Pages */
-        .page {
-            display: none;
-            animation: fadeInUp 0.4s ease;
-        }
-        
-        .page.active {
-            display: block;
-        }
+        .page { display: none; animation: fadeInUp 0.3s ease; }
+        .page.active { display: block; }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            z-index: 200;
-            align-items: center;
-            justify-content: center;
+        .glass-card {
+            background: #ffffff;
+            border-radius: 24px;
+            margin: 20px;
             padding: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
         }
         
-        .modal.active {
-            display: flex;
-        }
+        .section-title { font-size: 20px; font-weight: 700; color: #1e293b; margin-bottom: 20px; }
         
-        .modal-content {
-            background: #FFFFFF;
-            border-radius: 30px;
-            max-width: 400px;
-            width: 100%;
-            padding: 30px;
+        .code-job-card {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            border-radius: 24px;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
             text-align: center;
         }
         
-        /* Sponsor Cards */
-        .sponsor-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: all 0.3s;
-            border: 1px solid #eef2f6;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        .code-input-area { margin: 20px 0; display: flex; flex-direction: column; gap: 15px; }
+        
+        .code-input {
+            border: 2px solid #e2e8f0;
+            border-radius: 50px;
+            padding: 14px 20px;
+            font-size: 16px;
+            text-align: center;
+            font-family: monospace;
+            background: #ffffff;
         }
         
-        .sponsor-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+        .code-input:focus { outline: none; border-color: #22c55e; box-shadow: 0 0 0 3px rgba(34,197,94,0.1); }
         
-        .sponsor-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .sponsor-icon {
-            width: 50px;
-            height: 50px;
-            background: #1a1a2e;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #FFFFFF;
-        }
-        
-        .sponsor-info h4 {
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-        
-        .sponsor-info p {
-            font-size: 12px;
-            color: #6c757d;
-        }
-        
-        .sponsor-btn {
-            background: #1a1a2e;
+        .code-submit-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            color: #FFFFFF;
-            font-weight: 600;
+            border-radius: 50px;
+            padding: 14px;
+            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s;
         }
         
-        .sponsor-btn:active {
-            transform: scale(0.95);
-        }
+        .code-submit-btn:active { transform: scale(0.96); }
+        .code-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
         
-        .sponsor-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        /* Leaderboard */
-        .leaderboard-item {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-            border: 1px solid #eef2f6;
-        }
-        
-        .leaderboard-rank {
-            width: 40px;
-            height: 40px;
-            background: #1a1a2e;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .job-link-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 14px 20px;
             font-weight: bold;
             font-size: 16px;
-            color: #FFFFFF;
+            margin-bottom: 20px;
+            cursor: pointer;
+            width: 100%;
         }
         
-        .rank-1 {
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #1a1a2e;
-        }
-        
-        .leaderboard-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 18px;
-            color: #1a1a2e;
-        }
-        
-        .leaderboard-info {
-            flex: 1;
-        }
-        
-        .leaderboard-name {
+        .cooldown-badge {
+            background: #f97316;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 13px;
             font-weight: 600;
-            font-size: 14px;
-            color: #1a1a2e;
+            display: inline-block;
+            margin-bottom: 15px;
         }
         
-        .leaderboard-id {
-            font-size: 11px;
-            color: #6c757d;
-        }
-        
-        .leaderboard-amount {
-            font-weight: bold;
-            color: #1a1a2e;
-            font-size: 16px;
-        }
-        
-        /* Watch Ads Grid */
         .watch-ads-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -465,96 +288,103 @@
         }
         
         .watch-ad-item {
-            background: linear-gradient(135deg, #FF9800, #F57C00);
+            background: linear-gradient(135deg, #f97316, #ea580c);
             border-radius: 16px;
             padding: 15px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
         }
         
-        .watch-ad-item:active {
-            transform: scale(0.96);
+        .watch-ad-item:active { transform: scale(0.96); }
+        .watch-ad-item.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+        .watch-ad-item i { color: #ffffff; font-size: 28px; margin-bottom: 8px; }
+        .watch-ad-item p { color: #ffffff; font-size: 12px; }
+        .cooldown-timer { font-size: 10px; color: #fef3c7; margin-top: 5px; font-weight: bold; }
+        
+        .sponsor-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #e2e8f0;
         }
         
-        .watch-ad-item.disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            pointer-events: none;
+        .sponsor-info { display: flex; align-items: center; gap: 12px; }
+        .sponsor-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #ffffff;
+        }
+        .sponsor-info h4 { font-weight: 600; color: #1e293b; font-size: 14px; }
+        .sponsor-info p { font-size: 11px; color: #64748b; }
+        .sponsor-btn {
+            background: #1e293b;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 30px;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .sponsor-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .leaderboard-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #e2e8f0;
         }
         
-        .watch-ad-item i {
-            color: #FFFFFF;
-        }
-        
-        .watch-ad-item p {
-            color: #FFFFFF;
-        }
-        
-        .cooldown-timer {
-            font-size: 10px;
-            color: #ffeb3b;
-            margin-top: 5px;
+        .leaderboard-rank {
+            width: 40px;
+            height: 40px;
+            background: #1e293b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-weight: bold;
+            color: #ffffff;
         }
-        
-        /* Toast Alert */
-        .toast-alert {
-            position: fixed;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a2e;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-size: 14px;
-            font-weight: 500;
-            z-index: 150;
-            white-space: nowrap;
-            animation: slideUp 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1e293b; }
+        .leaderboard-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
         }
+        .leaderboard-name { font-weight: 600; font-size: 14px; color: #1e293b; }
+        .leaderboard-amount { font-weight: bold; color: #22c55e; font-size: 16px; }
         
-        .toast-alert.warning {
-            background: #ff9800;
-        }
-        
-        .toast-alert.error {
-            background: #f44336;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateX(-50%) translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-        }
-        
-        /* Withdraw Form */
         .withdraw-input {
-            background: #FFFFFF;
-            border: 1px solid #eef2f6;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 14px;
-            color: #1a1a2e;
             width: 100%;
             margin-bottom: 12px;
-            font-family: 'Inter', sans-serif;
         }
-        
-        .withdraw-input:focus {
-            outline: none;
-            border-color: #1a1a2e;
-        }
-        
         .withdraw-btn {
-            background: #1a1a2e;
+            background: #1e293b;
             border: none;
             padding: 14px;
             border-radius: 16px;
@@ -562,21 +392,34 @@
             font-weight: bold;
             width: 100%;
             cursor: pointer;
-            transition: all 0.3s;
         }
         
-        .withdraw-btn:active {
-            transform: scale(0.98);
+        .toast-alert {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            z-index: 150;
+            animation: slideUp 0.3s ease;
+            white-space: nowrap;
+        }
+        .toast-alert.warning { background: #f97316; }
+        .toast-alert.error { background: #ef4444; }
+        .toast-alert.success { background: #22c55e; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
         
-        /* Wheel Page Styles */
         .wheel-page-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: #FFFFFF;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #ffffff;
             z-index: 300;
             display: none;
             flex-direction: column;
@@ -584,22 +427,13 @@
             justify-content: center;
             padding: 20px;
         }
-        
-        .wheel-page-container.active {
-            display: flex;
-        }
-        
-        .wheel-canvas {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto;
-        }
-        
+        .wheel-page-container.active { display: flex; }
+        .wheel-canvas { width: 300px; height: 300px; margin: 20px auto; }
         .close-wheel {
             position: absolute;
             top: 20px;
             right: 20px;
-            background: #f0f0f0;
+            background: #f1f5f9;
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -607,12 +441,9 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            font-size: 24px;
-            color: #1a1a2e;
         }
-        
         .spin-btn-large {
-            background: #1a1a2e;
+            background: #1e293b;
             border: none;
             padding: 15px 50px;
             border-radius: 50px;
@@ -621,283 +452,228 @@
             font-size: 18px;
             margin-top: 25px;
             cursor: pointer;
-            transition: all 0.3s;
         }
-        
-        .spin-btn-large:active {
-            transform: scale(0.96);
-        }
-        
-        .spin-btn-large:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        /* Glass Card for pages */
-        .glass-card {
-            background: #FFFFFF;
-            border-radius: 24px;
-            margin: 20px;
-            padding: 20px;
-            border: 1px solid #eef2f6;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 20px;
-        }
-        
-        /* Cooldown timer text */
-        .cooldown-text {
-            font-size: 11px;
-            color: #ff6b6b;
-            margin-top: 5px;
-        }
-        
-        select.withdraw-input {
-            background: #FFFFFF;
-            color: #1a1a2e;
-        }
-        
-        select.withdraw-input option {
-            background: #FFFFFF;
-            color: #1a1a2e;
-        }
-        
-        /* Water Drop Animation */
-        @keyframes waterDrop {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-        
-        .water-effect {
-            animation: waterDrop 0.3s ease;
-        }
+        .flex-between { display: flex; align-items: center; justify-content: space-between; }
+        .flex-row { display: flex; align-items: center; gap: 16px; }
+        .cooldown-text { font-size: 10px; color: #f97316; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-    <!-- Main App -->
     <div id="app">
-        <!-- Home Page -->
         <div id="home-page" class="page active">
-            <!-- Profile Section -->
             <div class="profile-section">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-4">
+                <div class="flex-between">
+                    <div class="flex-row">
                         <div class="relative">
-                            <img id="profile-avatar" class="profile-avatar" src="https://placehold.co/70x70/1a1a2e/white?text=U" alt="Profile">
-                            <div id="verified-badge-icon" class="verified-badge hidden">
-                                <i class="fas fa-check text-white text-xs"></i>
-                            </div>
+                            <img id="profile-avatar" class="profile-avatar" src="https://placehold.co/70x70/1e293b/white?text=U" alt="Profile">
+                            <div id="verified-badge-icon" class="verified-badge hidden"><i class="fas fa-check text-white text-xs"></i></div>
                         </div>
                         <div>
-                            <h3 id="profile-name" class="font-bold text-lg" style="color: #1a1a2e;">Loading...</h3>
-                            <p id="profile-username" class="text-sm" style="color: #6c757d;">@username</p>
+                            <h3 id="profile-name" class="font-bold text-xl" style="color:#1e293b;">Loading...</h3>
+                            <p id="profile-username" class="text-sm" style="color:#64748b;">@username</p>
                         </div>
                     </div>
                     <div class="balance-card">
                         <p class="text-xs">মোট ব্যালেন্স</p>
-                        <p class="text-2xl font-bold balance-amount">৳<span id="balance">0</span></p>
+                        <p class="balance-amount">৳<span id="balance">0</span></p>
                     </div>
                 </div>
             </div>
             
-            <!-- Action Buttons Grid with Different Colors -->
             <div class="action-grid">
-                <div class="action-btn btn-watch" onclick="openWatchAdsPage()">
-                    <i class="fas fa-play-circle"></i>
-                    <h3>ওয়াচ অ্যাড</h3>
-                    <p>দেখুন এবং আর্ন করুন</p>
-                    <div class="limit-badge">১০টি অ্যাড</div>
-                </div>
-                
-                <div class="action-btn btn-short" onclick="showShortAd()">
-                    <i class="fas fa-ad"></i>
-                    <h3>শর্ট অ্যাড</h3>
-                    <p>+৳10 প্রতি অ্যাড</p>
-                    <div class="limit-badge"><span id="adsgram-count">0</span>/১০ আজ</div>
-                </div>
-                
-                <div class="action-btn btn-monetag" onclick="showMonetagAd()">
-                    <i class="fas fa-tv"></i>
-                    <h3>ভিডিও অ্যাড</h3>
-                    <p>+৳10 প্রতি অ্যাড</p>
-                    <div class="limit-badge"><span id="monetag-count">0</span>/৩০ আজ</div>
-                </div>
-                
-                <div class="action-btn btn-sponsor" onclick="navigateTo('sponsor-page')">
-                    <i class="fas fa-gift"></i>
-                    <h3>স্পন্সর</h3>
-                    <p>বোনাস পান</p>
-                    <div class="limit-badge">৩টি অফার</div>
-                </div>
+                <div class="action-btn btn-watch" onclick="openWatchAdsPage()"><i class="fas fa-play-circle"></i><h3>ওয়াচ অ্যাড</h3><p>দেখুন এবং আর্ন করুন</p><div class="limit-badge">১০টি অ্যাড</div></div>
+                <div class="action-btn btn-short" onclick="openCodeJobPage()"><i class="fas fa-code"></i><h3>শর্ট অ্যাড</h3><p>কোড সাবমিট করে আয়</p><div class="limit-badge">+১৫ টাকা</div></div>
+                <div class="action-btn btn-monetag" onclick="showMonetagAd()"><i class="fas fa-tv"></i><h3>ভিডিও অ্যাড</h3><p>+৳10 প্রতি অ্যাড</p><div class="limit-badge"><span id="monetag-count">0</span>/৩০ আজ</div></div>
+                <div class="action-btn btn-sponsor" onclick="navigateTo('sponsor-page')"><i class="fas fa-gift"></i><h3>স্পন্সর</h3><p>বোনাস পান</p><div class="limit-badge">৩টি অফার</div></div>
             </div>
             
-            <!-- Lucky Wheel Section -->
-            <div class="spin-section" onclick="openWheelPage()">
-                <div class="spin-icon">
-                    🎡
-                </div>
-                <h3 class="font-bold text-xl mb-2">লাকি হুইল</h3>
-                <p class="text-sm">স্পিন করে জিতে নিন ১০-৫০০ টাকা!</p>
-                <div class="limit-badge mt-2">স্পিন করতে অ্যাড দেখুন</div>
-            </div>
+            <div class="spin-section" onclick="openWheelPage()"><div class="spin-icon">🎡</div><h3>লাকি হুইল</h3><p>স্পিন করে জিতে নিন ১০-৫০০ টাকা!</p><div class="limit-badge mt-2">স্পিন করতে অ্যাড দেখুন</div></div>
             
-            <!-- Telegram Channel Button -->
-            <div class="channel-btn" onclick="joinTelegramChannel()">
-                <div class="flex items-center gap-3">
-                    <i class="fab fa-telegram text-2xl"></i>
-                    <div>
-                        <h3 class="font-bold">অফিসিয়াল চ্যানেল</h3>
-                        <p class="text-xs">সব আপডেট পেতে জয়েন করুন</p>
+            <div class="channel-btn" onclick="joinTelegramChannel()"><div class="flex-row"><i class="fab fa-telegram text-xl"></i><div><h3>অফিসিয়াল চ্যানেল</h3><p>সব আপডেট পেতে জয়েন করুন</p></div></div><i class="fas fa-arrow-right"></i></div>
+        </div>
+        
+        <div id="codejob-page" class="page">
+            <div class="glass-card">
+                <div class="flex-row mb-4"><i class="fas fa-arrow-left text-xl cursor-pointer" style="color:#1e293b;" onclick="navigateTo('home-page')"></i><h3 class="section-title" style="margin-bottom:0; margin-left:12px;">📝 কোড সাবমিট জব</h3></div>
+                <div class="code-job-card">
+                    <i class="fas fa-tasks fa-3x" style="color:#22c55e; margin-bottom:15px;"></i>
+                    <div id="code-job-cooldown-status" class="cooldown-badge" style="display: none;"></div>
+                    <p style="margin-bottom:15px; color:#475569;">নির্দিষ্ট লিংকে যান এবং কাজ সম্পন্ন করুন। সঠিক কোড সাবমিট করলে ১৫ টাকা পাবেন। প্রতি ৮ ঘন্টা পর পর একটি কোড সাবমিট করতে পারবেন।</p>
+                    <button id="job-link-btn" class="job-link-btn" onclick="openJobLink()"><i class="fas fa-external-link-alt mr-2"></i> কাজের লিংকে যান</button>
+                    <div class="code-input-area">
+                        <input type="text" id="code-input-field" class="code-input" placeholder="এখানে কোড লিখুন" autocomplete="off">
+                        <button id="code-submit-btn" class="code-submit-btn" onclick="submitCodeJob()"><i class="fas fa-check-circle mr-2"></i> কোড সাবমিট করুন</button>
+                    </div>
+                    <div class="info-note" style="font-size:12px; color:#64748b; margin-top:15px; padding:10px; background:#f1f5f9; border-radius:12px;">
+                        <i class="fas fa-info-circle"></i> সঠিক কোড: MP2025, GOLD100, BONUSBD, WINNER15, MONEYBD, LUCKY777, CODE200, EARNBD, FASTCASH, MEGABONUS<br>⏰ প্রতি ৮ ঘন্টা পর পর একটি কোড সাবমিট করতে পারবেন
                     </div>
                 </div>
-                <i class="fas fa-arrow-right"></i>
             </div>
         </div>
         
-        <!-- Wallet Page -->
         <div id="wallet-page" class="page">
-            <div class="glass-card">
-                <h3 class="section-title">💰 আমার ওয়ালেট</h3>
-                <div class="balance-card mb-4" style="background: #1a1a2e;">
-                    <p class="text-sm" style="color: rgba(255,255,255,0.8);">বর্তমান ব্যালেন্স</p>
-                    <p class="text-3xl font-bold" style="color: #FFFFFF;">৳<span id="wallet-balance">0</span></p>
-                </div>
-                
-                <input type="number" id="withdraw-amount" class="withdraw-input" placeholder="টাকার পরিমাণ লিখুন">
-                <select id="withdraw-method" class="withdraw-input">
-                    <option value="">পদ্ধতি নির্বাচন করুন</option>
-                    <option value="Bkash">বিকাশ</option>
-                    <option value="Nagad">নগদ</option>
-                    <option value="Rocket">রকেট</option>
-                </select>
-                <div id="payment-details-container"></div>
-                <button class="withdraw-btn mt-3" id="withdraw-btn">উত্তোলন রিকোয়েস্ট</button>
-            </div>
-            
-            <div class="glass-card">
-                <h3 class="section-title">📋 উত্তোলন ইতিহাস</h3>
-                <div id="withdrawal-history-list"></div>
-            </div>
+            <div class="glass-card"><h3 class="section-title">💰 আমার ওয়ালেট</h3><div class="balance-card mb-4" style="background: linear-gradient(135deg, #1e293b, #0f172a);"><p class="text-sm">বর্তমান ব্যালেন্স</p><p class="text-3xl font-bold" style="color:#ffffff;">৳<span id="wallet-balance">0</span></p></div><input type="number" id="withdraw-amount" class="withdraw-input" placeholder="টাকার পরিমাণ লিখুন (ন্যূনতম ২০০০)"><select id="withdraw-method" class="withdraw-input"><option value="">পদ্ধতি নির্বাচন করুন</option><option value="Bkash">বিকাশ</option><option value="Nagad">নগদ</option><option value="Rocket">রকেট</option></select><div id="payment-details-container"></div><button class="withdraw-btn mt-3" id="withdraw-btn">উত্তোলন রিকোয়েস্ট</button></div>
+            <div class="glass-card"><h3 class="section-title">📋 উত্তোলন ইতিহাস</h3><div id="withdrawal-history-list"></div></div>
         </div>
         
-        <!-- Leaderboard Page -->
-        <div id="leaderboard-page" class="page">
-            <div class="glass-card">
-                <h3 class="section-title">🏆 লিডারবোর্ড - টপ ১০</h3>
-                <div id="leaderboard-list"></div>
-            </div>
-        </div>
+        <div id="leaderboard-page" class="page"><div class="glass-card"><h3 class="section-title">🏆 লিডারবোর্ড - টপ ১০</h3><div id="leaderboard-list"></div></div></div>
         
-        <!-- Sponsor Page -->
-        <div id="sponsor-page" class="page">
-            <div class="glass-card">
-                <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-arrow-left text-xl cursor-pointer" style="color: #1a1a2e;" onclick="navigateTo('home-page')"></i>
-                    <h3 class="section-title" style="margin-bottom: 0;">🎁 স্পন্সর অফার</h3>
-                </div>
-                <p class="text-sm" style="color: #6c757d; margin-bottom: 20px;">প্রতিটি স্পন্সরে জয়েন করলে ২০ টাকা বোনাস! ২৪ ঘন্টা পর আবার জয়েন করতে পারবেন।</p>
-                <div id="sponsor-list"></div>
-            </div>
-        </div>
+        <div id="sponsor-page" class="page"><div class="glass-card"><div class="flex-row mb-4"><i class="fas fa-arrow-left text-xl cursor-pointer" style="color:#1e293b;" onclick="navigateTo('home-page')"></i><h3 class="section-title" style="margin-bottom:0;">🎁 স্পন্সর অফার</h3></div><div id="sponsor-list"></div></div></div>
         
-        <!-- Watch Ads Page -->
-        <div id="watch-ads-page" class="page">
-            <div class="glass-card">
-                <div class="flex items-center gap-3 mb-4">
-                    <i class="fas fa-arrow-left text-xl cursor-pointer" style="color: #1a1a2e;" onclick="navigateTo('home-page')"></i>
-                    <h3 class="section-title" style="margin-bottom: 0;">📺 অ্যাড দেখুন</h3>
-                </div>
-                <p class="text-sm" style="color: #6c757d; margin-bottom: 20px;">নিচের যেকোনো অ্যাডে ক্লিক করুন, ১৫ সেকেন্ড অপেক্ষা করুন এবং ৳১০ আর্ন করুন!</p>
-                <div class="watch-ads-grid" id="watch-ads-grid"></div>
-            </div>
-        </div>
+        <div id="watch-ads-page" class="page"><div class="glass-card"><div class="flex-row mb-4"><i class="fas fa-arrow-left text-xl cursor-pointer" style="color:#1e293b;" onclick="navigateTo('home-page')"></i><h3 class="section-title" style="margin-bottom:0;">📺 অ্যাড দেখুন</h3></div><p class="text-sm" style="color:#64748b; margin-bottom:20px;">নিচের যেকোনো অ্যাডে ক্লিক করুন, ১৫ সেকেন্ড অপেক্ষা করুন এবং ৳১০ আর্ন করুন!</p><div class="watch-ads-grid" id="watch-ads-grid"></div></div></div>
     </div>
     
-    <!-- Wheel Page (Full Screen) -->
-    <div id="wheel-page" class="wheel-page-container">
-        <div class="close-wheel" onclick="closeWheelPage()">
-            <i class="fas fa-times"></i>
-        </div>
-        <h2 class="text-2xl font-bold mb-4" style="color: #1a1a2e;">🎡 লাকি হুইল</h2>
-        <canvas id="wheelCanvas" width="300" height="300" class="wheel-canvas"></canvas>
-        <button class="spin-btn-large" id="wheel-spin-btn" onclick="startSpin()">
-            <i class="fas fa-sync-alt mr-2"></i> স্পিন করুন
-        </button>
-        <p class="text-sm mt-3" style="color: #6c757d;">স্পিন করতে একটি অ্যাড দেখতে হবে (১৫ সেকেন্ড)</p>
-        <p class="text-xs mt-2" style="color: #6c757d;">স্পিন করতে ব্যালেন্স কমপক্ষে ১০০০ টাকা থাকতে হবে</p>
-    </div>
+    <div id="wheel-page" class="wheel-page-container"><div class="close-wheel" onclick="closeWheelPage()"><i class="fas fa-times"></i></div><h2 class="text-xl font-bold mb-4" style="color:#1e293b;">🎡 লাকি হুইল</h2><canvas id="wheelCanvas" width="300" height="300" class="wheel-canvas"></canvas><button class="spin-btn-large" id="wheel-spin-btn" onclick="startSpin()"><i class="fas fa-sync-alt mr-2"></i> স্পিন করুন</button><p class="text-sm mt-3" style="color:#64748b;">স্পিন করতে একটি অ্যাড দেখতে হবে (১৫ সেকেন্ড)</p><p class="text-xs mt-2" style="color:#94a3b8;">স্পিন করতে ব্যালেন্স কমপক্ষে ১০০০ টাকা থাকতে হবে</p></div>
     
-    <!-- Bottom Navigation -->
     <div class="bottom-nav">
-        <div class="nav-item active" onclick="navigateTo('home-page')" data-page="home-page">
-            <i class="fas fa-home"></i>
-            <span>হোম</span>
-        </div>
-        <div class="nav-item" onclick="navigateTo('wallet-page')" data-page="wallet-page">
-            <i class="fas fa-wallet"></i>
-            <span>ওয়ালেট</span>
-        </div>
-        <div class="nav-item" onclick="navigateTo('leaderboard-page')" data-page="leaderboard-page">
-            <i class="fas fa-trophy"></i>
-            <span>লিডারবোর্ড</span>
-        </div>
-        <div class="nav-item support-nav" onclick="openSupport()">
-            <i class="fas fa-headset"></i>
-            <span>সাপোর্ট</span>
-        </div>
+        <div class="nav-item active" onclick="navigateTo('home-page')" data-page="home-page"><i class="fas fa-home"></i><span>হোম</span></div>
+        <div class="nav-item" onclick="navigateTo('wallet-page')" data-page="wallet-page"><i class="fas fa-wallet"></i><span>ওয়ালেট</span></div>
+        <div class="nav-item" onclick="navigateTo('leaderboard-page')" data-page="leaderboard-page"><i class="fas fa-trophy"></i><span>লিডারবোর্ড</span></div>
+        <div class="nav-item support-nav" id="support-nav-btn" onclick="openSupportOnce()"><i class="fas fa-headset"></i><span>সাপোর্ট</span></div>
     </div>
     
     <script>
-        // ==================== CONFIGURATION ====================
+        // Configuration
         const CONFIG = {
-            app: {
-                minWithdrawal: 3000,
-                dailyAdLimit: { adsgram: 5, monetag: 30 },
-                adReward: 10,
-                sponsorBonus: 20
-            },
-            adsgram: { enabled: true, blockId: "int-25736" },
+            app: { minWithdrawal: 2000, dailyAdLimit: { monetag: 30 }, adReward: 10, sponsorBonus: 20 },
             monetag: { enabled: true, zones: ['9730885', '9500387', '9715370'] },
-            social: {
-                telegram: "https://t.me/+fXJwdu2jQ4A0ZTM9",
-                support: "https://t.me/arning_hubbot"
+            social: { telegram: "https://t.me/+fXJwdu2jQ4A0ZTM9", support: "https://t.me/arning_hubbot" },
+            codeJobCooldownHours: 8
+        };
+        
+        const VALID_CODES = ["MP2025", "GOLD100", "BONUSBD", "WINNER15", "MONEYBD", "LUCKY777", "CODE200", "EARNBD", "FASTCASH", "MEGABONUS"];
+        const SEGMENTS = [
+            { value: 10, color: "#FF6B6B", label: "৳10" }, { value: 20, color: "#4ECDC4", label: "৳20" }, { value: 50, color: "#45B7D1", label: "৳50" },
+            { value: 100, color: "#96CEB4", label: "৳100" }, { value: 200, color: "#FFEAA7", label: "৳200" }, { value: 500, color: "#DDA0DD", label: "৳500" },
+            { value: 30, color: "#98D8C8", label: "৳30" }, { value: 15, color: "#F7B05E", label: "৳15" }
+        ];
+        
+        let currentUser = null, userData = null, monetagCount = 0, currentZoneIndex = 0, isSpinning = false, currentAngle = 0, pendingSpin = false;
+        let wheelCanvas, ctx;
+        let supportClicked = false;
+        const tg = window.Telegram.WebApp;
+        
+        function showToast(msg, type = "info") {
+            let toast = document.createElement("div");
+            toast.className = `toast-alert ${type}`;
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+        function playVibration() { if (navigator.vibrate) navigator.vibrate(200); }
+        
+        function initTelegramApp() {
+            tg.ready(); tg.expand();
+            const user = tg.initDataUnsafe.user;
+            if (user) {
+                currentUser = { id: user.id.toString(), firstName: user.first_name || '', lastName: user.last_name || '', username: user.username || '', photoUrl: user.photo_url || '' };
+                loadUserData();
+            } else {
+                currentUser = { id: "demo_" + Date.now(), firstName: "User", username: "user" };
+                loadUserData();
+            }
+        }
+        
+        function loadUserData() {
+            const stored = localStorage.getItem(`user_${currentUser.id}`);
+            const today = new Date().toISOString().split('T')[0];
+            if (stored) {
+                userData = JSON.parse(stored);
+                if (userData.lastDate !== today) { userData.monetagCount = 0; userData.lastDate = today; }
+                if (!userData.usedCodes) userData.usedCodes = [];
+                if (!userData.lastCodeSubmitTime) userData.lastCodeSubmitTime = 0;
+                if (!userData.watchAdCooldowns) userData.watchAdCooldowns = {};
+                if (!userData.sponsorCompletions) userData.sponsorCompletions = {};
+            } else {
+                userData = {
+                    uid: currentUser.id, name: currentUser.firstName || "User", username: currentUser.username || "user",
+                    balance: 0, monetagCount: 0, isVerified: false, sponsorCompletions: {},
+                    watchAdCooldowns: {}, usedCodes: [], lastCodeSubmitTime: 0, lastDate: today
+                };
+            }
+            monetagCount = userData.monetagCount || 0;
+            updateUI();
+            updateAdCounts();
+            loadSponsors();
+            loadWatchAds();
+            loadLeaderboard();
+            loadWithdrawalHistory();
+            updateCodeJobCooldownUI();
+            setInterval(() => { updateWatchAdTimers(); updateCodeJobCooldownUI(); }, 1000);
+        }
+        
+        function saveUserToStorage() {
+            userData.monetagCount = monetagCount;
+            localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userData));
+        }
+        
+        function updateUI() {
+            document.getElementById("balance").textContent = userData.balance;
+            document.getElementById("wallet-balance").textContent = userData.balance;
+            document.getElementById("profile-name").textContent = userData.name;
+            document.getElementById("profile-username").textContent = "@" + userData.username;
+            if (currentUser.photoUrl) document.getElementById("profile-avatar").src = currentUser.photoUrl;
+            if (userData.isVerified) document.getElementById("verified-badge-icon").classList.remove("hidden");
+        }
+        function updateAdCounts() { document.getElementById("monetag-count").textContent = monetagCount; }
+        
+        // Code Job with 8-hour cooldown
+        function updateCodeJobCooldownUI() {
+            const lastSubmit = userData.lastCodeSubmitTime || 0;
+            const now = Date.now();
+            const cooldownMs = CONFIG.codeJobCooldownHours * 60 * 60 * 1000;
+            const remaining = Math.max(0, cooldownMs - (now - lastSubmit));
+            const statusDiv = document.getElementById("code-job-cooldown-status");
+            const submitBtn = document.getElementById("code-submit-btn");
+            const inputField = document.getElementById("code-input-field");
+            
+            if (remaining > 0) {
+                const hours = Math.floor(remaining / 3600000);
+                const minutes = Math.floor((remaining % 3600000) / 60000);
+                statusDiv.style.display = "inline-block";
+                statusDiv.innerHTML = `⏰ পরবর্তী কোড সাবমিট করতে ${hours} ঘন্টা ${minutes} মিনিট অপেক্ষা করুন`;
+                if (submitBtn) submitBtn.disabled = true;
+                if (inputField) inputField.disabled = true;
+            } else {
+                statusDiv.style.display = "none";
+                if (submitBtn) submitBtn.disabled = false;
+                if (inputField) inputField.disabled = false;
+            }
+        }
+        
+        window.openCodeJobPage = function() { navigateTo("codejob-page"); updateCodeJobCooldownUI(); };
+        window.openJobLink = function() { tg.openLink("https://omg10.com/4/9717825"); showToast("কাজের লিংকে যান এবং কোড সংগ্রহ করুন", "info"); };
+        
+        window.submitCodeJob = function() {
+            const lastSubmit = userData.lastCodeSubmitTime || 0;
+            const cooldownMs = CONFIG.codeJobCooldownHours * 60 * 60 * 1000;
+            if (Date.now() - lastSubmit < cooldownMs) {
+                const remaining = Math.ceil((cooldownMs - (Date.now() - lastSubmit)) / 3600000);
+                showToast(`প্রতি ${CONFIG.codeJobCooldownHours} ঘন্টায় একটি কোড সাবমিট করতে পারবেন। ${remaining} ঘন্টা বাকি`, "warning");
+                return;
+            }
+            
+            const inputCode = document.getElementById("code-input-field").value.trim().toUpperCase();
+            if (!inputCode) { showToast("কোড লিখুন!", "warning"); return; }
+            if (userData.usedCodes.includes(inputCode)) { showToast("এই কোড আপনি ইতিমধ্যে ব্যবহার করেছেন!", "error"); return; }
+            if (VALID_CODES.includes(inputCode)) {
+                userData.usedCodes.push(inputCode);
+                userData.lastCodeSubmitTime = Date.now();
+                userData.balance += 15;
+                saveUserToStorage();
+                updateUI();
+                document.getElementById("code-input-field").value = "";
+                playVibration();
+                canvasConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                showToast("✅ সঠিক কোড! ১৫ টাকা যোগ হয়েছে!", "success");
+                updateCodeJobCooldownUI();
+            } else {
+                showToast("❌ ভুল কোড! সঠিক কোড দিন।", "error");
             }
         };
         
-        // Wheel Segments
-        const SEGMENTS = [
-            { value: 10, color: "#FF6B6B", label: "৳10" },
-            { value: 20, color: "#4ECDC4", label: "৳20" },
-            { value: 50, color: "#45B7D1", label: "৳50" },
-            { value: 100, color: "#96CEB4", label: "৳100" },
-            { value: 200, color: "#FFEAA7", label: "৳200" },
-            { value: 500, color: "#DDA0DD", label: "৳500" },
-            { value: 30, color: "#98D8C8", label: "৳30" },
-            { value: 15, color: "#F7B05E", label: "৳15" }
-        ];
-        
-        // Fake Leaderboard Users
-        const FAKE_LEADERBOARD = [
-            { name: "User_7421", balance: 28450, avatar: "⭐" },
-            { name: "User_1834", balance: 21780, avatar: "🔥" },
-            { name: "User_5629", balance: 18920, avatar: "💎" },
-            { name: "User_9073", balance: 15430, avatar: "🏆" },
-            { name: "User_3451", balance: 12890, avatar: "🎯" },
-            { name: "User_6782", balance: 10250, avatar: "⚡" },
-            { name: "User_4567", balance: 8920, avatar: "💰" },
-            { name: "User_2345", balance: 7350, avatar: "📈" },
-            { name: "User_8912", balance: 5680, avatar: "🎲" },
-            { name: "User_1234", balance: 4320, avatar: "✨" }
-        ];
-        
-        // Watch Ads Links
+        // Watch Ads
         const WATCH_ADS_LINKS = [
             "https://omg10.com/4/9717825", "https://omg10.com/4/9429975", "https://omg10.com/4/9446627",
             "https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975",
@@ -906,702 +682,222 @@
             "https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c",
             "https://omg10.com/4/9570590", "https://omg10.com/4/9429981"
         ];
+        let watchAdPending = {};
+        
+        function loadWatchAds() {
+            const container = document.getElementById("watch-ads-grid");
+            if (!container) return;
+            container.innerHTML = "";
+            for (let i = 0; i < 10; i++) {
+                let cooldownEnd = (userData.watchAdCooldowns && userData.watchAdCooldowns[`ad_${i}`]) || 0;
+                let now = Date.now();
+                let isOnCooldown = cooldownEnd > now;
+                let remaining = isOnCooldown ? Math.ceil((cooldownEnd - now) / 1000) : 0;
+                let hrs = Math.floor(remaining / 3600), mins = Math.floor((remaining % 3600) / 60), secs = remaining % 60;
+                let cdText = isOnCooldown ? (hrs > 0 ? `${hrs}ঘ ${mins}মি` : mins > 0 ? `${mins}মি ${secs}সে` : `${secs}সে`) : "";
+                container.innerHTML += `<div class="watch-ad-item ${isOnCooldown ? 'disabled' : ''}" onclick="${isOnCooldown ? '' : `watchAdWithCooldown(${i})`}"><i class="fas fa-play-circle"></i><p class="font-bold">অ্যাড ${i + 1}</p><p class="text-xs">+৳10</p>${isOnCooldown ? `<div class="cooldown-timer">⏰ ${cdText} পর</div>` : ''}</div>`;
+            }
+        }
+        function updateWatchAdTimers() { loadWatchAds(); }
+        window.watchAdWithCooldown = function(index) {
+            let cooldownEnd = (userData.watchAdCooldowns && userData.watchAdCooldowns[`ad_${index}`]) || 0;
+            if (cooldownEnd > Date.now()) { showToast("অ্যাডটি কুলডাউনে আছে!", "warning"); return; }
+            tg.openLink(WATCH_ADS_LINKS[index]);
+            showToast("অ্যাড দেখার জন্য ১৫ সেকেন্ড অপেক্ষা করুন...", "info");
+            if (watchAdPending[index]) clearTimeout(watchAdPending[index]);
+            watchAdPending[index] = setTimeout(() => {
+                userData.balance += 10;
+                userData.watchAdCooldowns[`ad_${index}`] = Date.now() + (10 * 60 * 60 * 1000);
+                saveUserToStorage();
+                updateUI();
+                loadWatchAds();
+                playVibration();
+                showToast(`🎉 অ্যাড ${index + 1} দেখার জন্য ১০ টাকা পেলেন!`, "success");
+                delete watchAdPending[index];
+            }, 15000);
+        };
+        
+        // Monetag Video Ad
+        async function showMonetagAd() {
+            if (monetagCount >= 30) { showToast("আজকের ভিডিও অ্যাড সীমা শেষ!", "warning"); return; }
+            showToast("ভিডিও অ্যাড লোড হচ্ছে...", "info");
+            const zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
+            const adFunc = `show_${zone}`;
+            if (typeof window[adFunc] === 'function') {
+                try {
+                    await window[adFunc]();
+                    monetagCount++; currentZoneIndex++; userData.balance += 10;
+                    saveUserToStorage(); updateUI(); updateAdCounts(); playVibration();
+                    showToast("🎉 ১০ টাকা উপার্জন!", "success");
+                } catch (e) { showToast("অ্যাড ত্রুটি", "error"); }
+            } else { showToast("অ্যাড সিস্টেম প্রস্তুত হচ্ছে", "warning"); }
+        }
         
         // Sponsors
         const SPONSORS = [
             { name: "ভিডিও ডাউনলোডার", icon: "fas fa-download", link: "https://t.me/videodownloadertgxbot", reward: 20 },
             { name: "মুভি স্ট্রিমিং", icon: "fas fa-film", link: "https://t.me/movieflex00bot", reward: 20 },
-            { name: "ads", icon: "fab fa-facebook", link: "https://omg10.com/4/9397622", reward: 20 }
+            { name: "অ্যাড অফার", icon: "fab fa-facebook", link: "https://omg10.com/4/9397622", reward: 20 }
         ];
-        
-        let currentUser = null;
-        let userData = null;
-        let adsGramCount = 0;
-        let monetagCount = 0;
-        let currentZoneIndex = 0;
-        let isSpinning = false;
-        let wheelCanvas = null;
-        let ctx = null;
-        let currentAngle = 0;
-        let pendingSpin = false;
-        
-        // Watch Ads Cooldown tracking
-        let watchAdCooldowns = {};
-        let watchAdPending = {};
-        
-        // Audio elements (using Web Audio API for sound effects)
-        function playWaterSound() {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                
-                oscillator.frequency.value = 800;
-                gainNode.gain.value = 0.3;
-                
-                oscillator.start();
-                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
-                oscillator.stop(audioCtx.currentTime + 0.5);
-                
-                // Add water drop effect
-                const waterOsc = audioCtx.createOscillator();
-                const waterGain = audioCtx.createGain();
-                waterOsc.connect(waterGain);
-                waterGain.connect(audioCtx.destination);
-                waterOsc.frequency.value = 1200;
-                waterGain.gain.value = 0.2;
-                waterOsc.start();
-                waterGain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
-                waterOsc.stop(audioCtx.currentTime + 0.3);
-            } catch(e) {
-                console.log("Audio not supported");
-            }
-        }
-        
-        function playVibration() {
-            if (navigator.vibrate) {
-                navigator.vibrate(200);
-            }
-        }
-        
-        const tg = window.Telegram.WebApp;
-        
-        // ==================== WHEEL FUNCTIONS ====================
-        function initWheel() {
-            wheelCanvas = document.getElementById("wheelCanvas");
-            if (wheelCanvas) {
-                ctx = wheelCanvas.getContext("2d");
-                drawWheel();
-            }
-        }
-        
-        function drawWheel() {
-            if (!ctx || !wheelCanvas) return;
-            const size = 300;
-            const center = size / 2;
-            const radius = size / 2;
-            const angleStep = (Math.PI * 2) / SEGMENTS.length;
-            
-            ctx.clearRect(0, 0, size, size);
-            
-            for (let i = 0; i < SEGMENTS.length; i++) {
-                const startAngle = currentAngle + i * angleStep;
-                const endAngle = startAngle + angleStep;
-                
-                ctx.beginPath();
-                ctx.moveTo(center, center);
-                ctx.arc(center, center, radius, startAngle, endAngle);
-                ctx.fillStyle = SEGMENTS[i].color;
-                ctx.fill();
-                ctx.strokeStyle = "white";
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                
-                ctx.save();
-                ctx.translate(center, center);
-                ctx.rotate(startAngle + angleStep / 2);
-                ctx.textAlign = "center";
-                ctx.fillStyle = "#1a1a2e";
-                ctx.font = "bold 14px 'Inter'";
-                ctx.fillText(SEGMENTS[i].label, radius - 40, 10);
-                ctx.restore();
-            }
-            
-            ctx.beginPath();
-            ctx.arc(center, center, 25, 0, Math.PI * 2);
-            ctx.fillStyle = "white";
-            ctx.fill();
-            ctx.fillStyle = "#1a1a2e";
-            ctx.font = "bold 28px Arial";
-            ctx.fillText("🎡", center - 12, center + 10);
-        }
-        
-        function openWheelPage() {
-            if (!userData || userData.balance < 1000) {
-                showToast("স্পিন করতে আপনার ব্যালেন্স কমপক্ষে ১০০০ টাকা হতে হবে!", "error");
-                return;
-            }
-            document.getElementById("wheel-page").classList.add("active");
-        }
-        
-        function closeWheelPage() {
-            document.getElementById("wheel-page").classList.remove("active");
-        }
-        
-        function startSpin() {
-            if (isSpinning) {
-                showToast("স্পিন চলছে, একটু অপেক্ষা করুন!", "warning");
-                return;
-            }
-            pendingSpin = true;
-            showAdForSpin();
-        }
-        
-        async function showAdForSpin() {
-            showToast("স্পিন করার জন্য একটি অ্যাড দেখতে হবে...", "info");
-            playWaterSound();
-            
-            try {
-                if (typeof window.Adsgram !== 'undefined' && window.Adsgram) {
-                    const adController = window.Adsgram.init({ blockId: CONFIG.adsgram.blockId });
-                    if (adController) {
-                        await adController.show();
-                        playVibration();
-                        executeSpin();
-                        return;
-                    }
-                }
-                
-                const zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
-                const adFunc = `show_${zone}`;
-                if (typeof window[adFunc] === 'function') {
-                    await window[adFunc]();
-                    currentZoneIndex++;
-                    playVibration();
-                    executeSpin();
-                    return;
-                }
-                
-                showToast("অ্যাড সিস্টেম প্রস্তুত হচ্ছে...", "error");
-                pendingSpin = false;
-            } catch (error) {
-                showToast("অ্যাড দেখতে সমস্যা হয়েছে।", "error");
-                pendingSpin = false;
-            }
-        }
-        
-        function executeSpin() {
-            if (!pendingSpin) return;
-            pendingSpin = false;
-            
-            isSpinning = true;
-            const spinBtn = document.getElementById("wheel-spin-btn");
-            spinBtn.disabled = true;
-            spinBtn.style.opacity = "0.6";
-            
-            const spinAngle = 360 * 5 + Math.random() * 360;
-            const targetAngle = spinAngle * Math.PI / 180;
-            const startAngle = currentAngle;
-            const duration = 2000;
-            const startTime = Date.now();
-            
-            function animate() {
-                const now = Date.now();
-                const elapsed = now - startTime;
-                const progress = Math.min(1, elapsed / duration);
-                const easeOut = 1 - Math.pow(1 - progress, 3);
-                currentAngle = startAngle + targetAngle * easeOut;
-                drawWheel();
-                
-                if (progress < 1) {
-                    requestAnimationFrame(animate);
-                } else {
-                    const finalAngle = currentAngle % (Math.PI * 2);
-                    const segmentIndex = Math.floor((finalAngle + Math.PI * 2) % (Math.PI * 2) / ((Math.PI * 2) / SEGMENTS.length));
-                    const reward = SEGMENTS[segmentIndex].value;
-                    
-                    userData.balance += reward;
-                    saveUserToStorage();
-                    updateUI();
-                    
-                    canvasConfetti({ particleCount: 200, spread: 100, origin: { y: 0.6 } });
-                    playVibration();
-                    showToast(`🎉 অভিনন্দন! আপনি ${reward} টাকা জিতেছেন!`, "success");
-                    
-                    isSpinning = false;
-                    spinBtn.disabled = false;
-                    spinBtn.style.opacity = "1";
-                }
-            }
-            
-            requestAnimationFrame(animate);
-        }
-        
-        // ==================== USER DATA ====================
-        function initTelegramApp() {
-            tg.ready();
-            tg.expand();
-            const user = tg.initDataUnsafe.user;
-            if (user) {
-                currentUser = {
-                    id: user.id.toString(),
-                    firstName: user.first_name || '',
-                    lastName: user.last_name || '',
-                    username: user.username || '',
-                    photoUrl: user.photo_url || ''
-                };
-                loadUserData();
-            } else {
-                // Demo user - but show real Telegram user if available
-                currentUser = { id: "demo_123", firstName: "User", username: "user" };
-                loadUserData();
-            }
-        }
-        
-        function loadUserData() {
-            const stored = localStorage.getItem(`user_${currentUser.id}`);
-            const today = new Date().toISOString().split('T')[0];
-            
-            if (stored) {
-                userData = JSON.parse(stored);
-                if (userData.lastDate !== today) {
-                    userData.adsGramCount = 0;
-                    userData.monetagCount = 0;
-                    userData.lastDate = today;
-                }
-                // Load watch ad cooldowns
-                if (userData.watchAdCooldowns) {
-                    watchAdCooldowns = userData.watchAdCooldowns;
-                }
-            } else {
-                userData = {
-                    uid: currentUser.id,
-                    name: currentUser.firstName && currentUser.firstName !== "User" ? currentUser.firstName : (currentUser.firstName || "User"),
-                    username: currentUser.username || "user",
-                    balance: 0,
-                    adsGramCount: 0,
-                    monetagCount: 0,
-                    isVerified: false,
-                    sponsorCompletions: {},
-                    watchAdCooldowns: {},
-                    lastDate: today
-                };
-            }
-            
-            adsGramCount = userData.adsGramCount || 0;
-            monetagCount = userData.monetagCount || 0;
-            updateUI();
-            updateAdCounts();
-            loadSponsors();
-            loadWatchAds();
-            loadLeaderboard();
-            loadWithdrawalHistory();
-            
-            // Start cooldown timer updates
-            setInterval(updateWatchAdTimers, 1000);
-        }
-        
-        function saveUserToStorage() {
-            userData.adsGramCount = adsGramCount;
-            userData.monetagCount = monetagCount;
-            userData.watchAdCooldowns = watchAdCooldowns;
-            localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userData));
-        }
-        
-        function updateUI() {
-            document.getElementById("balance").textContent = userData.balance;
-            document.getElementById("wallet-balance").textContent = userData.balance;
-            document.getElementById("profile-name").textContent = userData.name || "User";
-            document.getElementById("profile-username").textContent = "@" + (userData.username || "user");
-            
-            if (currentUser.photoUrl) {
-                document.getElementById("profile-avatar").src = currentUser.photoUrl;
-            }
-            
-            if (userData.isVerified) {
-                document.getElementById("verified-badge-icon").classList.remove("hidden");
-            }
-        }
-        
-        function updateAdCounts() {
-            document.getElementById("adsgram-count").textContent = adsGramCount;
-            document.getElementById("monetag-count").textContent = monetagCount;
-        }
-        
-        // ==================== WATCH ADS WITH COOLDOWN ====================
-        function loadWatchAds() {
-            const container = document.getElementById("watch-ads-grid");
-            if (!container) return;
-            
-            container.innerHTML = "";
-            for (let i = 0; i < 10; i++) {
-                const cooldownEnd = watchAdCooldowns[`ad_${i}`] || 0;
-                const now = Date.now();
-                const isOnCooldown = cooldownEnd > now;
-                const remainingSeconds = isOnCooldown ? Math.ceil((cooldownEnd - now) / 1000) : 0;
-                const hours = Math.floor(remainingSeconds / 3600);
-                const minutes = Math.floor((remainingSeconds % 3600) / 60);
-                const seconds = remainingSeconds % 60;
-                
-                let cooldownText = "";
-                if (isOnCooldown) {
-                    if (hours > 0) cooldownText = `${hours}ঘ ${minutes}মি`;
-                    else if (minutes > 0) cooldownText = `${minutes}মি ${seconds}সে`;
-                    else cooldownText = `${seconds}সে`;
-                }
-                
-                container.innerHTML += `
-                    <div class="watch-ad-item ${isOnCooldown ? 'disabled' : ''}" data-ad-index="${i}" onclick="${isOnCooldown ? '' : `watchAdWithCooldown(${i})`}">
-                        <i class="fas fa-play-circle text-3xl mb-2"></i>
-                        <p class="font-bold">অ্যাড ${i + 1}</p>
-                        <p class="text-xs">+৳10</p>
-                        ${isOnCooldown ? `<div class="cooldown-timer">⏰ ${cooldownText} পর</div>` : ''}
-                    </div>
-                `;
-            }
-        }
-        
-        function updateWatchAdTimers() {
-            const now = Date.now();
-            let needsUpdate = false;
-            
-            for (let i = 0; i < 10; i++) {
-                const cooldownEnd = watchAdCooldowns[`ad_${i}`] || 0;
-                if (cooldownEnd > now) {
-                    needsUpdate = true;
-                    break;
-                }
-            }
-            
-            if (needsUpdate) {
-                loadWatchAds();
-            }
-        }
-        
-        window.watchAdWithCooldown = function(index) {
-            const cooldownEnd = watchAdCooldowns[`ad_${index}`] || 0;
-            const now = Date.now();
-            
-            if (cooldownEnd > now) {
-                const remainingSeconds = Math.ceil((cooldownEnd - now) / 1000);
-                const hours = Math.floor(remainingSeconds / 3600);
-                const minutes = Math.floor((remainingSeconds % 3600) / 60);
-                const seconds = remainingSeconds % 60;
-                let timeText = "";
-                if (hours > 0) timeText = `${hours} ঘন্টা ${minutes} মিনিট`;
-                else if (minutes > 0) timeText = `${minutes} মিনিট ${seconds} সেকেন্ড`;
-                else timeText = `${seconds} সেকেন্ড`;
-                showToast(`এই অ্যাডটি আবার দেখতে ${timeText} অপেক্ষা করুন!`, "warning");
-                return;
-            }
-            
-            const link = WATCH_ADS_LINKS[index];
-            tg.openLink(link);
-            showToast("অ্যাড দেখার জন্য ১৫ সেকেন্ড অপেক্ষা করুন...", "info");
-            playWaterSound();
-            
-            watchAdPending[index] = setTimeout(() => {
-                userData.balance += 10;
-                saveUserToStorage();
-                updateUI();
-                
-                // Set 10 hour cooldown (36000 seconds)
-                watchAdCooldowns[`ad_${index}`] = Date.now() + (10 * 60 * 60 * 1000);
-                saveUserToStorage();
-                loadWatchAds();
-                
-                playVibration();
-                showToast(`🎉 অ্যাড ${index + 1} দেখার জন্য ১০ টাকা পেয়েছেন! পরবর্তী অ্যাড ${hours}ঘন্টা পর দেখতে পারবেন।`, "success");
-            }, 15000);
-            
-            // Return early warning if user returns before 15 seconds
-            const returnCheck = setInterval(() => {
-                if (!watchAdPending[index]) {
-                    clearInterval(returnCheck);
-                    return;
-                }
-                // This will be handled by visibility change event
-            }, 1000);
-        };
-        
-        // ==================== SHORT AD FUNCTIONS ====================
-        async function showShortAd() {
-            if (adsGramCount >= 10) {
-                showToast("আজকের জন্য আপনার অ্যাড দেখার সীমা শেষ হয়েছে!", "warning");
-                return;
-            }
-            
-            showToast("অ্যাড লোড হচ্ছে...", "info");
-            playWaterSound();
-            
-            try {
-                if (typeof window.Adsgram !== 'undefined' && window.Adsgram) {
-                    const adController = window.Adsgram.init({ blockId: CONFIG.adsgram.blockId });
-                    if (adController) {
-                        await adController.show();
-                        adsGramCount++;
-                        userData.balance += 10;
-                        saveUserToStorage();
-                        updateUI();
-                        updateAdCounts();
-                        playVibration();
-                        showToast("🎉 আপনি ১০ টাকা উপার্জন করেছেন!", "success");
-                    }
-                }
-            } catch (error) {
-                showToast("অ্যাড দেখতে সমস্যা হয়েছে।", "error");
-            }
-        }
-        
-        async function showMonetagAd() {
-            if (monetagCount >= 30) {
-                showToast("আজকের জন্য আপনার অ্যাড দেখার সীমা শেষ হয়েছে!", "warning");
-                return;
-            }
-            
-            showToast("অ্যাড লোড হচ্ছে...", "info");
-            playWaterSound();
-            
-            const zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
-            const adFunc = `show_${zone}`;
-            
-            if (typeof window[adFunc] === 'function') {
-                try {
-                    await window[adFunc]();
-                    monetagCount++;
-                    currentZoneIndex++;
-                    userData.balance += 10;
-                    saveUserToStorage();
-                    updateUI();
-                    updateAdCounts();
-                    playVibration();
-                    showToast("🎉 আপনি ১০ টাকা উপার্জন করেছেন!", "success");
-                } catch (error) {
-                    showToast("অ্যাড দেখতে সমস্যা হয়েছে।", "error");
-                }
-            } else {
-                showToast("অ্যাড সিস্টেম প্রস্তুত হচ্ছে...", "warning");
-            }
-        }
-        
-        // ==================== SPONSORS (WITH 24H COOLDOWN) ====================
         function loadSponsors() {
-            const container = document.getElementById("sponsor-list");
+            let container = document.getElementById("sponsor-list");
             if (!container) return;
-            
             container.innerHTML = "";
-            SPONSORS.forEach((sponsor, i) => {
-                const completed = userData.sponsorCompletions?.[`sponsor_${i}`];
-                const now = Date.now();
-                const cooldownRemaining = completed ? Math.max(0, 24 * 60 * 60 * 1000 - (now - completed)) : 0;
-                const hoursLeft = Math.floor(cooldownRemaining / 3600000);
-                const minutesLeft = Math.floor((cooldownRemaining % 3600000) / 60000);
-                
-                container.innerHTML += `
-                    <div class="sponsor-card">
-                        <div class="sponsor-info">
-                            <div class="sponsor-icon"><i class="${sponsor.icon}"></i></div>
-                            <div>
-                                <h4>${sponsor.name}</h4>
-                                <p>+${sponsor.reward} টাকা বোনাস</p>
-                                ${cooldownRemaining > 0 ? `<p class="cooldown-text">⏰ ${hoursLeft}ঘ ${minutesLeft}মি পর আবার জয়েন করতে পারবেন</p>` : ''}
-                            </div>
-                        </div>
-                        <button class="sponsor-btn" onclick="claimSponsor(${i})" ${cooldownRemaining > 0 ? 'disabled' : ''}>
-                            ${cooldownRemaining > 0 ? `${hoursLeft}ঘ ${minutesLeft}মি পরে` : 'জয়েন করুন'}
-                        </button>
-                    </div>
-                `;
+            SPONSORS.forEach((sp, i) => {
+                let completed = userData.sponsorCompletions?.[`sponsor_${i}`] || 0;
+                let cooldown = completed ? Math.max(0, 24 * 60 * 60 * 1000 - (Date.now() - completed)) : 0;
+                let hrs = Math.floor(cooldown / 3600000), mins = Math.floor((cooldown % 3600000) / 60000);
+                container.innerHTML += `<div class="sponsor-card"><div class="sponsor-info"><div class="sponsor-icon"><i class="${sp.icon}"></i></div><div><h4>${sp.name}</h4><p>+${sp.reward} টাকা</p>${cooldown > 0 ? `<p class="cooldown-text">⏰ ${hrs}ঘ ${mins}মি পরে</p>` : ''}</div></div><button class="sponsor-btn" onclick="claimSponsor(${i})" ${cooldown > 0 ? 'disabled' : ''}>${cooldown > 0 ? `${hrs}ঘ পরে` : 'জয়েন করুন'}</button></div>`;
             });
         }
-        
-        window.claimSponsor = function(index) {
-            const sponsor = SPONSORS[index];
-            tg.openLink(sponsor.link);
-            showToast("স্পন্সরে জয়েন করার জন্য ৫ সেকেন্ড অপেক্ষা করুন...", "info");
-            playWaterSound();
-            
+        window.claimSponsor = function(idx) {
+            let sp = SPONSORS[idx];
+            tg.openLink(sp.link);
+            showToast("স্পন্সরে ৫ সেকেন্ড পর বোনাস পাবেন", "info");
             setTimeout(() => {
-                if (!userData.sponsorCompletions) userData.sponsorCompletions = {};
-                userData.sponsorCompletions[`sponsor_${index}`] = Date.now();
-                userData.balance += sponsor.reward;
-                saveUserToStorage();
-                updateUI();
-                loadSponsors();
-                playVibration();
-                showToast(`🎉 ${sponsor.name} জয়েন করার জন্য ${sponsor.reward} টাকা পেয়েছেন!`, "success");
+                userData.sponsorCompletions[`sponsor_${idx}`] = Date.now();
+                userData.balance += sp.reward;
+                saveUserToStorage(); updateUI(); loadSponsors(); playVibration();
+                showToast(`🎉 ${sp.name} জয়েনে ${sp.reward} টাকা পেলেন!`, "success");
             }, 5000);
         };
         
-        // ==================== LEADERBOARD ====================
+        // Leaderboard with daily auto change
+        const FAKE_NAMES = ["রাকিব হাসান", "সুমাইয়া আক্তার", "মেহেদী হাসান", "তাহমিনা সুলতানা", "শাকিব খান", "নুসরাত জাহান", "তানভির আহমেদ", "সাবিনা ইয়াসমিন", "আরিফ চৌধুরী", "ফারজানা আক্তার"];
         function loadLeaderboard() {
-            const realUsers = [];
+            let todayStr = new Date().toISOString().split('T')[0];
+            let seed = 0;
+            for (let i = 0; i < todayStr.length; i++) seed += todayStr.charCodeAt(i);
+            let fakeBalances = [28450, 21780, 18920, 15430, 12890, 10250, 8920, 7350, 5680, 4320];
+            let randomized = [...fakeBalances];
+            for (let i = randomized.length - 1; i > 0; i--) { let j = (seed + i) % (i + 1); [randomized[i], randomized[j]] = [randomized[j], randomized[i]]; }
+            let fakeUsers = FAKE_NAMES.map((name, idx) => ({ name, balance: randomized[idx] + (seed % 500), avatar: name.charAt(0) }));
+            let realUsers = [];
             for (let i = 0; i < localStorage.length; i++) {
-                const key = localStorage.key(i);
+                let key = localStorage.key(i);
                 if (key && key.startsWith("user_")) {
-                    try {
-                        const user = JSON.parse(localStorage.getItem(key));
-                        if (user && user.balance > 0) {
-                            realUsers.push(user);
-                        }
-                    } catch(e) {}
+                    try { let u = JSON.parse(localStorage.getItem(key)); if (u && u.balance > 0) realUsers.push({ name: u.name, balance: u.balance, avatar: u.name?.charAt(0) || "U" }); } catch (e) { }
                 }
             }
-            
-            const allUsers = [...realUsers, ...FAKE_LEADERBOARD];
-            allUsers.sort((a, b) => (b.balance || 0) - (a.balance || 0));
-            const top10 = allUsers.slice(0, 10);
-            
-            const container = document.getElementById("leaderboard-list");
+            let all = [...realUsers, ...fakeUsers];
+            all.sort((a, b) => (b.balance || 0) - (a.balance || 0));
+            let top10 = all.slice(0, 10);
+            let container = document.getElementById("leaderboard-list");
             if (container) {
-                container.innerHTML = top10.map((user, idx) => {
-                    const rankClass = idx === 0 ? "rank-1" : "";
-                    const name = user.name || `User_${Math.floor(1000 + Math.random() * 9000)}`;
-                    const balance = user.balance || Math.floor(500 + Math.random() * 20000);
-                    const avatar = user.avatar || name.charAt(0);
-                    const userId = Math.floor(100000 + Math.random() * 900000);
-                    
-                    return `
-                        <div class="leaderboard-item">
-                            <div class="leaderboard-rank ${rankClass}">${idx + 1}</div>
-                            <div class="leaderboard-avatar">${avatar}</div>
-                            <div class="leaderboard-info">
-                                <div class="leaderboard-name">${name}</div>
-                                <div class="leaderboard-id">ID: ${userId}</div>
-                            </div>
-                            <div class="leaderboard-amount">৳${balance.toLocaleString()}</div>
-                        </div>
-                    `;
-                }).join("");
+                container.innerHTML = top10.map((u, idx) => `<div class="leaderboard-item"><div class="leaderboard-rank ${idx === 0 ? 'rank-1' : ''}">${idx + 1}</div><div class="leaderboard-avatar">${u.avatar || '👤'}</div><div class="leaderboard-info"><div class="leaderboard-name">${u.name || 'User'}</div></div><div class="leaderboard-amount">৳${(u.balance || 0).toLocaleString()}</div></div>`).join("");
             }
         }
         
-        // ==================== WITHDRAWAL ====================
+        // Withdrawal
         function loadWithdrawalHistory() {
-            const history = JSON.parse(localStorage.getItem(`withdrawals_${currentUser?.id}`) || "[]");
-            const container = document.getElementById("withdrawal-history-list");
-            if (container) {
-                container.innerHTML = history.length === 0 ? 
-                    '<p style="text-align: center; color: #6c757d;">কোন উত্তোলন ইতিহাস নেই</p>' :
-                    history.map(w => `
-                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 12px; margin-bottom: 8px;">
-                            <div>
-                                <span style="font-weight: 600; color: #1a1a2e;">${w.amount} টাকা</span>
-                                <span style="font-size: 11px; display: block; color: #6c757d;">${w.method}</span>
-                            </div>
-                            <span style="color: ${w.status === 'pending' ? '#ffc107' : '#28a745'}; font-size: 12px; font-weight: 500;">
-                                ${w.status === 'pending' ? 'প্রসেসিং' : 'অনুমোদিত'}
-                            </span>
-                        </div>
-                    `).join("");
-            }
+            let history = JSON.parse(localStorage.getItem(`withdrawals_${currentUser?.id}`) || "[]");
+            let container = document.getElementById("withdrawal-history-list");
+            if (container) container.innerHTML = history.length === 0 ? '<p class="text-center" style="color:#64748b;">কোন ইতিহাস নেই</p>' : history.map(w => `<div style="display:flex; justify-content:space-between; padding:12px; background:#f8fafc; border-radius:12px; margin-bottom:8px;"><div><span style="font-weight:600;">${w.amount} টাকা</span><span style="font-size:11px; display:block;">${w.method}</span></div><span style="color:${w.status === 'pending' ? '#f97316' : '#22c55e'};">${w.status === 'pending' ? 'প্রসেসিং' : 'অনুমোদিত'}</span></div>`).join("");
         }
-        
         function handleWithdrawal() {
-            const amount = parseInt(document.getElementById("withdraw-amount").value);
-            const method = document.getElementById("withdraw-method").value;
-            const paymentDetail = document.getElementById("payment-detail-input")?.value;
-            
-            if (!amount || amount < 2000) {
-                showToast("সর্বনিম্ন উত্তোলন ২০০০ টাকা", "warning");
-                return;
-            }
-            if (amount > userData.balance) {
-                showToast("ব্যালেন্স পর্যাপ্ত নয়", "error");
-                return;
-            }
-            if (!method || !paymentDetail) {
-                showToast("সমস্ত তথ্য পূরণ করুন", "warning");
-                return;
-            }
-            
-            const withdrawals = JSON.parse(localStorage.getItem(`withdrawals_${currentUser.id}`) || "[]");
+            let amount = parseInt(document.getElementById("withdraw-amount").value);
+            let method = document.getElementById("withdraw-method").value;
+            let paymentDetail = document.getElementById("payment-detail-input")?.value;
+            if (!amount || amount < 2000) { showToast("ন্যূনতম উত্তোলন ২০০০ টাকা", "warning"); return; }
+            if (amount > userData.balance) { showToast("ব্যালেন্স অপর্যাপ্ত", "error"); return; }
+            if (!method || !paymentDetail) { showToast("সব তথ্য পূরণ করুন", "warning"); return; }
+            let withdrawals = JSON.parse(localStorage.getItem(`withdrawals_${currentUser.id}`) || "[]");
             withdrawals.push({ amount, method, paymentDetail, status: "pending", requestedAt: new Date().toISOString() });
             localStorage.setItem(`withdrawals_${currentUser.id}`, JSON.stringify(withdrawals));
-            
             userData.balance -= amount;
             saveUserToStorage();
             updateUI();
             loadWithdrawalHistory();
-            showToast("উত্তোলন রিকোয়েস্ট জমা হয়েছে। ২৪-৪৮ ঘন্টার মধ্যে প্রসেস করা হবে।", "success");
+            showToast("উত্তোলন রিকোয়েস্ট জমা হয়েছে। ২৪-৪৮ ঘন্টার মধ্যে প্রসেস হবে।", "success");
         }
-        
         function updateDynamicPaymentFields() {
-            const method = document.getElementById("withdraw-method").value;
-            const container = document.getElementById("payment-details-container");
-            let placeholder = "বিবরণ লিখুন";
-            if (method === "Bkash") placeholder = "বিকাশ নম্বর লিখুন";
-            if (method === "Nagad") placeholder = "নগদ নম্বর লিখুন";
-            if (method === "Rocket") placeholder = "রকেট নম্বর লিখুন";
-            container.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="withdraw-input mt-2">`;
+            let method = document.getElementById("withdraw-method").value;
+            let placeholder = method === "Bkash" ? "বিকাশ নম্বর" : method === "Nagad" ? "নগদ নম্বর" : method === "Rocket" ? "রকেট নম্বর" : "বিবরণ লিখুন";
+            document.getElementById("payment-details-container").innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="withdraw-input mt-2">`;
         }
         
-        // ==================== UTILITIES ====================
+        // Support (once only)
+        window.openSupportOnce = function() {
+            if (supportClicked) { showToast("আপনি ইতিমধ্যে সাপোর্টে ক্লিক করেছেন!", "warning"); return; }
+            supportClicked = true;
+            tg.openLink(CONFIG.social.support);
+            showToast("সাপোর্টে সংযুক্ত করা হচ্ছে...", "info");
+        };
+        
+        // Wheel
+        function initWheel() { wheelCanvas = document.getElementById("wheelCanvas"); if (wheelCanvas) { ctx = wheelCanvas.getContext("2d"); drawWheel(); } }
+        function drawWheel() {
+            if (!ctx) return;
+            let size = 300, center = 150, radius = 150, angleStep = (Math.PI * 2) / SEGMENTS.length;
+            ctx.clearRect(0, 0, size, size);
+            for (let i = 0; i < SEGMENTS.length; i++) {
+                let start = currentAngle + i * angleStep, end = start + angleStep;
+                ctx.beginPath(); ctx.moveTo(center, center); ctx.arc(center, center, radius, start, end);
+                ctx.fillStyle = SEGMENTS[i].color; ctx.fill(); ctx.strokeStyle = "white"; ctx.stroke();
+                ctx.save(); ctx.translate(center, center); ctx.rotate(start + angleStep / 2);
+                ctx.fillStyle = "#1e293b"; ctx.font = "bold 14px Inter"; ctx.fillText(SEGMENTS[i].label, radius - 40, 10);
+                ctx.restore();
+            }
+            ctx.beginPath(); ctx.arc(center, center, 25, 0, Math.PI * 2); ctx.fillStyle = "white"; ctx.fill();
+            ctx.fillStyle = "#1e293b"; ctx.font = "bold 28px Arial"; ctx.fillText("🎡", center - 12, center + 10);
+        }
+        window.openWheelPage = function() { if (userData.balance < 1000) { showToast("স্পিন করতে ১০০০ টাকা লাগবে", "error"); return; } document.getElementById("wheel-page").classList.add("active"); };
+        window.closeWheelPage = function() { document.getElementById("wheel-page").classList.remove("active"); };
+        window.startSpin = async function() {
+            if (isSpinning) return;
+            pendingSpin = true;
+            try {
+                if (typeof Adsgram !== 'undefined') { let ad = Adsgram.init({ blockId: "int-25736" }); if (ad) await ad.show(); executeSpin(); return; }
+            } catch (e) { }
+            let zone = CONFIG.monetag.zones[currentZoneIndex % CONFIG.monetag.zones.length];
+            let adFunc = `show_${zone}`;
+            if (typeof window[adFunc] === 'function') { await window[adFunc](); currentZoneIndex++; executeSpin(); return; }
+            showToast("অ্যাড সমস্যা", "error"); pendingSpin = false;
+        };
+        function executeSpin() {
+            if (!pendingSpin) return;
+            pendingSpin = false; isSpinning = true;
+            let btn = document.getElementById("wheel-spin-btn"); btn.disabled = true;
+            let spinAngle = 360 * 5 + Math.random() * 360, targetAngle = spinAngle * Math.PI / 180, startAngle = currentAngle, duration = 2000, startTime = Date.now();
+            function animate() {
+                let elapsed = Date.now() - startTime, progress = Math.min(1, elapsed / duration), ease = 1 - Math.pow(1 - progress, 3);
+                currentAngle = startAngle + targetAngle * ease; drawWheel();
+                if (progress < 1) requestAnimationFrame(animate);
+                else {
+                    let final = currentAngle % (Math.PI * 2), idx = Math.floor(final / ((Math.PI * 2) / SEGMENTS.length)), reward = SEGMENTS[idx].value;
+                    userData.balance += reward; saveUserToStorage(); updateUI(); canvasConfetti({ particleCount: 200, spread: 100 }); playVibration();
+                    showToast(`🎉 জিতেছেন ${reward} টাকা!`, "success"); isSpinning = false; btn.disabled = false;
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        
+        // Navigation
         function navigateTo(pageId) {
             document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-            document.getElementById(`${pageId}`).classList.add("active");
-            document.querySelectorAll(".nav-item").forEach(item => {
-                item.classList.remove("active");
-                if (item.getAttribute("data-page") === pageId) item.classList.add("active");
-            });
-            
+            document.getElementById(pageId).classList.add("active");
+            document.querySelectorAll(".nav-item").forEach(item => { item.classList.remove("active"); if (item.getAttribute("data-page") === pageId) item.classList.add("active"); });
             if (pageId === "leaderboard-page") loadLeaderboard();
             if (pageId === "wallet-page") loadWithdrawalHistory();
             if (pageId === "sponsor-page") loadSponsors();
             if (pageId === "watch-ads-page") loadWatchAds();
+            if (pageId === "codejob-page") updateCodeJobCooldownUI();
         }
-        
-        function openWatchAdsPage() {
-            navigateTo("watch-ads-page");
-        }
-        
-        function joinTelegramChannel() {
+        window.navigateTo = navigateTo;
+        window.openWatchAdsPage = () => navigateTo("watch-ads-page");
+        window.joinTelegramChannel = function() {
             tg.openLink(CONFIG.social.telegram);
-            showToast("চ্যানেলে জয়েন করার জন্য ৫ সেকেন্ড পর বোনাস পাবেন!", "info");
-            playWaterSound();
-            
-            setTimeout(() => {
-                userData.balance += 20;
-                saveUserToStorage();
-                updateUI();
-                playVibration();
-                showToast("🎉 চ্যানেল জয়েন করার জন্য ২০ টাকা বোনাস পেয়েছেন!", "success");
-            }, 5000);
-        }
+            setTimeout(() => { userData.balance += 20; saveUserToStorage(); updateUI(); showToast("চ্যানেল জয়েন বোনাস ২০ টাকা!", "success"); }, 5000);
+        };
         
-        function openSupport() {
-            tg.openLink(CONFIG.social.support);
-        }
-        
-        function showToast(message, type = "info") {
-            const toast = document.createElement("div");
-            toast.className = `toast-alert ${type}`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-        
-        // Visibility change detection for watch ads
-        document.addEventListener("visibilitychange", function() {
-            if (!document.hidden) {
-                // User returned to page
-                for (let i = 0; i < 10; i++) {
-                    if (watchAdPending[i]) {
-                        clearTimeout(watchAdPending[i]);
-                        delete watchAdPending[i];
-                        showToast("⚠️ সতর্কতা: আপনি ১৫ সেকেন্ডের আগে ফিরে এসেছেন! অ্যাড দেখার জন্য ১৫ সেকেন্ড অপেক্ষা করুন।", "warning");
-                    }
-                }
-            }
-        });
-        
-        // ==================== INITIALIZATION ====================
         window.onload = () => {
             initWheel();
             initTelegramApp();
-            
             document.getElementById("withdraw-btn")?.addEventListener("click", handleWithdrawal);
             document.getElementById("withdraw-method")?.addEventListener("change", updateDynamicPaymentFields);
-            
-            setInterval(() => {
-                if (currentUser) loadLeaderboard();
-            }, 30000);
+            setInterval(() => { if (currentUser) loadLeaderboard(); }, 30000);
         };
-        
-        window.navigateTo = navigateTo;
-        window.openWatchAdsPage = openWatchAdsPage;
-        window.showShortAd = showShortAd;
         window.showMonetagAd = showMonetagAd;
-        window.joinTelegramChannel = joinTelegramChannel;
-        window.openSupport = openSupport;
-        window.openWheelPage = openWheelPage;
-        window.closeWheelPage = closeWheelPage;
-        window.startSpin = startSpin;
-        window.watchAdWithCooldown = watchAdWithCooldown;
-        window.claimSponsor = claimSponsor;
     </script>
 </body>
 </html>
