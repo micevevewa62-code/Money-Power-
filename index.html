@@ -120,8 +120,8 @@
         .leaderboard-item { background: #ffffff; border-radius: 16px; padding: 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; border: 1px solid #e2e8f0; }
         .leaderboard-rank { width: 40px; height: 40px; background: #1e293b; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #ffffff; }
         .rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1e293b; }
-        .leaderboard-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; }
-        .leaderboard-name { font-weight: 600; font-size: 14px; color: #1e293b; }
+        .leaderboard-avatar { width: 45px; height: 45px; border-radius: 50%; background: linear-gradient(135deg, #e2e8f0, #cbd5e1); display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; font-family: monospace; }
+        .leaderboard-name { font-weight: 600; font-size: 14px; color: #1e293b; font-family: monospace; letter-spacing: 1px; }
         .leaderboard-amount { font-weight: bold; color: #22c55e; font-size: 16px; }
         
         .withdraw-input { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 14px; width: 100%; margin-bottom: 12px; }
@@ -142,6 +142,7 @@
         .flex-row { display: flex; align-items: center; gap: 16px; }
         .cooldown-text { font-size: 10px; color: #f97316; margin-top: 5px; }
         .info-note { font-size: 12px; color: #64748b; margin-top: 15px; padding: 10px; background: #f1f5f9; border-radius: 12px; }
+        .user-code-badge { background: #1e293b; color: white; padding: 6px 12px; border-radius: 20px; font-family: monospace; font-weight: bold; font-size: 14px; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -152,12 +153,12 @@
                 <div class="flex-between">
                     <div class="flex-row">
                         <div class="relative">
-                            <img id="profile-avatar" class="profile-avatar" src="https://placehold.co/70x70/1e293b/white?text=U" alt="Profile">
+                            <img id="profile-avatar" class="profile-avatar" src="https://placehold.co/70x70/1e293b/white?text=ID" alt="Profile">
                             <div id="verified-badge-icon" class="verified-badge hidden"><i class="fas fa-check text-white text-xs"></i></div>
                         </div>
                         <div>
-                            <h3 id="profile-name" class="font-bold text-xl" style="color:#1e293b;">Loading...</h3>
-                            <p id="profile-username" class="text-sm" style="color:#64748b;">@username</p>
+                            <div class="user-code-badge" id="profile-code">****</div>
+                            <p id="profile-username" class="text-sm" style="color:#64748b; margin-top: 5px;">@username</p>
                         </div>
                     </div>
                     <div class="balance-card">
@@ -215,63 +216,34 @@
     </div>
     
     <script>
-        // ==================== ALL CONFIGURATIONS CENTRALIZED (Hidden from user) ====================
+        // ==================== CONFIG ====================
         const APP_CONFIG = {
-            // App Settings
-            app: {
-                minWithdrawal: 3000,
-                dailyMonetagLimit: 30,
-                adReward: 10,
-                sponsorBonus: 20,
-                watchAdCooldownHours: 10,
-                codeJobCooldownHours: 8,
-                channelJoinBonus: 20,
-                spinMinBalance: 1000
-            },
-            // Monetag Ad Zones
-            monetag: {
-                enabled: true,
-                zones: ['9730885', '9500387', '9715370']
-            },
-            // AdsGram Block ID (for wheel spin ad)
-            adsgram: {
-                blockId: "int-25736"
-            },
-            // Social Links
-            social: {
-                telegramChannel: "https://t.me/+fXJwdu2jQ4A0ZTM9",
-                supportBot: "https://t.me/arning_hubbot",
-                jobLink: "https://code-collection-nu.vercel.app"
-            },
-            // Valid Codes for Code Job (Secret - Not visible to users)
+            app: { minWithdrawal: 3000, dailyMonetagLimit: 30, adReward: 10, sponsorBonus: 20, watchAdCooldownHours: 10, codeJobCooldownHours: 8, channelJoinBonus: 20, spinMinBalance: 1000 },
+            monetag: { enabled: true, zones: ['9730885', '9500387', '9715370'] },
+            adsgram: { blockId: "int-25736" },
+            social: { telegramChannel: "https://t.me/+fXJwdu2jQ4A0ZTM9", supportBot: "https://t.me/arning_hubbot", jobLink: "https://code-collection-nu.vercel.app" },
             validCodes: ["MP2025", "GOLD100", "BONUSBD", "WINNER15", "MONEYBD", "LUCKY777", "CODE200", "EARNBD", "FASTCASH", "MEGABONUS"],
-            // Watch Ads Links
-            watchAdLinks: [
-                "https://omg10.com/4/9717825", "https://omg10.com/4/9429975", "https://omg10.com/4/9446627",
-                "https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975",
-                "https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b",
-                "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", "https://omg10.com/4/10338067",
-                "https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c",
-                "https://omg10.com/4/9570590", "https://omg10.com/4/9429981"
-            ],
-            // Sponsors
+            watchAdLinks: ["https://omg10.com/4/9717825", "https://omg10.com/4/9429975", "https://omg10.com/4/9446627", "https://encouragementglutton.com/vc1xew7t?key=9a97915b9241db71d8f53e974a75a975", "https://www.effectivegatecpm.com/hjt54qy2f?key=850e1a1f668e2f8cf8fbc7662317181b", "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", "https://omg10.com/4/10338067", "https://encouragementglutton.com/uaw9tkid6b?key=c49281ab14f9eb6a872d63173ea7bf9c", "https://omg10.com/4/9570590", "https://omg10.com/4/9429981"],
             sponsors: [
                 { name: "ভিডিও ডাউনলোডার", icon: "fas fa-download", link: "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", reward: 20 },
                 { name: "মুভি স্ট্রিমিং", icon: "fas fa-film", link: "https://t.me/movieflex00bot", reward: 20 },
-                { name: "অ্যাড অফার", icon: "fab fa-18+Chennal", link: "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", reward: 20 }
+                { name: "অ্যাড অফার", icon: "fas fa-ad", link: "https://t.me/o0Uq6h5R0p80ZGE1bot?startapp", reward: 20 }
             ],
-            // Wheel Segments
             wheelSegments: [
                 { value: 10, color: "#FF6B6B", label: "৳10" }, { value: 20, color: "#4ECDC4", label: "৳20" },
                 { value: 50, color: "#45B7D1", label: "৳50" }, { value: 100, color: "#96CEB4", label: "৳100" },
                 { value: 200, color: "#FFEAA7", label: "৳200" }, { value: 500, color: "#DDA0DD", label: "৳500" },
                 { value: 30, color: "#98D8C8", label: "৳30" }, { value: 15, color: "#F7B05E", label: "৳15" }
-            ],
-            // Leaderboard Fake Names
-            fakeLeaderboardNames: ["রাকিব হাসান", "সুমাইয়া আক্তার", "মেহেদী হাসান", "তাহমিনা সুলতানা", "শাকিব খান", "নুসরাত জাহান", "তানভির আহমেদ", "সাবিনা ইয়াসমিন", "আরিফ চৌধুরী", "ফারজানা আক্তার"]
+            ]
         };
         
-        // ==================== GLOBAL VARIABLES ====================
+        // Generate 50 fake 4-digit codes for leaderboard
+        const FAKE_CODES = Array.from({ length: 50 }, (_, i) => {
+            let num = 1000 + (i * 73) % 9000;
+            return num.toString();
+        });
+        
+        // ==================== GLOBALS ====================
         let currentUser = null, userData = null, monetagCount = 0, currentZoneIndex = 0;
         let isSpinning = false, currentAngle = 0, pendingSpin = false;
         let wheelCanvas, ctx;
@@ -279,16 +251,86 @@
         let watchAdPending = {};
         const tg = window.Telegram.WebApp;
         
-        // ==================== UTILITY FUNCTIONS ====================
-        function showToast(msg, type = "info") {
-            let toast = document.createElement("div");
-            toast.className = `toast-alert ${type}`;
-            toast.textContent = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+        function showToast(msg, type = "info") { let toast = document.createElement("div"); toast.className = `toast-alert ${type}`; toast.textContent = msg; document.body.appendChild(toast); setTimeout(() => toast.remove(), 3000); }
+        function playVibration() { if (navigator.vibrate) navigator.vibrate(200); }
+        
+        // Generate unique 4-digit code for user based on ID
+        function generateUserCode(userId) {
+            let hash = 0;
+            for (let i = 0; i < userId.length; i++) hash = ((hash << 5) - hash) + userId.charCodeAt(i) | 0;
+            let code = Math.abs(hash) % 9000 + 1000;
+            return code.toString();
         }
         
-        function playVibration() { if (navigator.vibrate) navigator.vibrate(200); }
+        // Daily dynamic balance for leaderboard (10,000 to 30,000 range)
+        function getDailyLeaderboardBalance(userId, realEarnings = 0) {
+            const today = new Date().toISOString().split('T')[0];
+            let hash = 0;
+            const seedStr = userId + today;
+            for (let i = 0; i < seedStr.length; i++) hash = ((hash << 5) - hash) + seedStr.charCodeAt(i) | 0;
+            const normalized = Math.abs(hash) % 20001;
+            let baseDynamic = 10000 + normalized;
+            // Add small influence from real earnings but keep within 10k-30k
+            let influence = Math.min(5000, Math.floor(realEarnings / 8));
+            let finalBalance = Math.min(30000, Math.max(10000, baseDynamic + influence));
+            return Math.floor(finalBalance);
+        }
+        
+        // Load leaderboard with 4-digit codes instead of names
+        function loadLeaderboard() {
+            let realUsers = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                if (key && key.startsWith("user_")) {
+                    try {
+                        let u = JSON.parse(localStorage.getItem(key));
+                        if (u && u.balance !== undefined && u.userCode) {
+                            realUsers.push({ 
+                                id: key.replace("user_", ""),
+                                userCode: u.userCode,
+                                realBalance: u.balance || 0
+                            });
+                        }
+                    } catch(e) {}
+                }
+            }
+            
+            // Build leaderboard entries with daily dynamic balance
+            let leaderboardEntries = realUsers.map(user => {
+                let dailyBalance = getDailyLeaderboardBalance(user.id, user.realBalance);
+                return { code: user.userCode, balance: dailyBalance, isReal: true };
+            });
+            
+            // Generate fake users with 4-digit codes and dynamic balances
+            let fakeEntries = [];
+            for (let i = 0; i < 30; i++) {
+                let fakeCode = FAKE_CODES[i % FAKE_CODES.length];
+                let todaySeed = new Date().toISOString().split('T')[0];
+                let hashVal = 0;
+                let seedStr = todaySeed + i + "fake_leader";
+                for (let c of seedStr) hashVal = ((hashVal << 5) - hashVal) + c.charCodeAt(0) | 0;
+                let fakeBal = 10000 + (Math.abs(hashVal) % 20001);
+                fakeEntries.push({ code: fakeCode, balance: fakeBal, isReal: false });
+            }
+            
+            let all = [...leaderboardEntries, ...fakeEntries];
+            all.sort((a, b) => b.balance - a.balance);
+            let top10 = all.slice(0, 10);
+            
+            let container = document.getElementById("leaderboard-list");
+            if (container) {
+                container.innerHTML = top10.map((u, idx) => `
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank ${idx === 0 ? 'rank-1' : ''}">${idx + 1}</div>
+                        <div class="leaderboard-avatar">#${u.code.slice(0,2)}</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">${u.code}</div>
+                        </div>
+                        <div class="leaderboard-amount">৳${u.balance.toLocaleString()}</div>
+                    </div>
+                `).join("");
+            }
+        }
         
         // ==================== USER DATA MANAGEMENT ====================
         function initTelegramApp() {
@@ -313,9 +355,12 @@
                 if (!userData.lastCodeSubmitTime) userData.lastCodeSubmitTime = 0;
                 if (!userData.watchAdCooldowns) userData.watchAdCooldowns = {};
                 if (!userData.sponsorCompletions) userData.sponsorCompletions = {};
+                if (!userData.userCode) userData.userCode = generateUserCode(currentUser.id);
             } else {
                 userData = {
-                    uid: currentUser.id, name: currentUser.firstName || "User", username: currentUser.username || "user",
+                    uid: currentUser.id, 
+                    userCode: generateUserCode(currentUser.id),
+                    username: currentUser.username || "user",
                     balance: 0, monetagCount: 0, isVerified: false, sponsorCompletions: {},
                     watchAdCooldowns: {}, usedCodes: [], lastCodeSubmitTime: 0, lastDate: today
                 };
@@ -329,6 +374,7 @@
             loadWithdrawalHistory();
             updateCodeJobCooldownUI();
             setInterval(() => { updateWatchAdTimers(); updateCodeJobCooldownUI(); }, 1000);
+            setInterval(() => loadLeaderboard(), 3600000);
         }
         
         function saveUserToStorage() {
@@ -339,15 +385,15 @@
         function updateUI() {
             document.getElementById("balance").textContent = userData.balance;
             document.getElementById("wallet-balance").textContent = userData.balance;
-            document.getElementById("profile-name").textContent = userData.name;
-            document.getElementById("profile-username").textContent = "@" + userData.username;
+            document.getElementById("profile-code").textContent = userData.userCode;
+            document.getElementById("profile-username").textContent = "@" + (userData.username || "user");
             if (currentUser.photoUrl) document.getElementById("profile-avatar").src = currentUser.photoUrl;
             if (userData.isVerified) document.getElementById("verified-badge-icon").classList.remove("hidden");
         }
         
         function updateAdCounts() { document.getElementById("monetag-count").textContent = monetagCount; }
         
-        // ==================== CODE JOB WITH 8-HOUR COOLDOWN ====================
+        // ==================== CODE JOB ====================
         function updateCodeJobCooldownUI() {
             const lastSubmit = userData.lastCodeSubmitTime || 0;
             const now = Date.now();
@@ -356,7 +402,6 @@
             const statusDiv = document.getElementById("code-job-cooldown-status");
             const submitBtn = document.getElementById("code-submit-btn");
             const inputField = document.getElementById("code-input-field");
-            
             if (remaining > 0) {
                 const hours = Math.floor(remaining / 3600000);
                 const minutes = Math.floor((remaining % 3600000) / 60000);
@@ -377,12 +422,7 @@
         window.submitCodeJob = function() {
             const lastSubmit = userData.lastCodeSubmitTime || 0;
             const cooldownMs = APP_CONFIG.app.codeJobCooldownHours * 60 * 60 * 1000;
-            if (Date.now() - lastSubmit < cooldownMs) {
-                const remaining = Math.ceil((cooldownMs - (Date.now() - lastSubmit)) / 3600000);
-                showToast(`প্রতি ${APP_CONFIG.app.codeJobCooldownHours} ঘন্টায় একটি কোড সাবমিট করতে পারবেন। ${remaining} ঘন্টা বাকি`, "warning");
-                return;
-            }
-            
+            if (Date.now() - lastSubmit < cooldownMs) { showToast(`প্রতি ${APP_CONFIG.app.codeJobCooldownHours} ঘন্টায় একটি কোড সাবমিট করতে পারবেন`, "warning"); return; }
             const inputCode = document.getElementById("code-input-field").value.trim().toUpperCase();
             if (!inputCode) { showToast("কোড লিখুন!", "warning"); return; }
             if (userData.usedCodes.includes(inputCode)) { showToast("এই কোড আপনি ইতিমধ্যে ব্যবহার করেছেন!", "error"); return; }
@@ -390,16 +430,12 @@
                 userData.usedCodes.push(inputCode);
                 userData.lastCodeSubmitTime = Date.now();
                 userData.balance += 15;
-                saveUserToStorage();
-                updateUI();
-                document.getElementById("code-input-field").value = "";
-                playVibration();
-                canvasConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+                saveUserToStorage(); updateUI(); document.getElementById("code-input-field").value = "";
+                playVibration(); canvasConfetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
                 showToast("✅ সঠিক কোড! ১৫ টাকা যোগ হয়েছে!", "success");
                 updateCodeJobCooldownUI();
-            } else {
-                showToast("❌ ভুল কোড! সঠিক কোড দিন।", "error");
-            }
+                loadLeaderboard();
+            } else { showToast("❌ ভুল কোড! সঠিক কোড দিন.", "error"); }
         };
         
         // ==================== WATCH ADS ====================
@@ -429,28 +465,21 @@
             watchAdPending[index] = setTimeout(() => {
                 userData.balance += APP_CONFIG.app.adReward;
                 userData.watchAdCooldowns[`ad_${index}`] = Date.now() + (APP_CONFIG.app.watchAdCooldownHours * 60 * 60 * 1000);
-                saveUserToStorage();
-                updateUI();
-                loadWatchAds();
-                playVibration();
+                saveUserToStorage(); updateUI(); loadWatchAds(); playVibration();
                 showToast(`🎉 অ্যাড ${index + 1} দেখার জন্য ${APP_CONFIG.app.adReward} টাকা পেলেন!`, "success");
+                loadLeaderboard();
                 delete watchAdPending[index];
             }, 15000);
         };
         
-        // ==================== MONETAG VIDEO AD ====================
+        // ==================== MONETAG ====================
         async function showMonetagAd() {
             if (monetagCount >= APP_CONFIG.app.dailyMonetagLimit) { showToast("আজকের ভিডিও অ্যাড সীমা শেষ!", "warning"); return; }
             showToast("ভিডিও অ্যাড লোড হচ্ছে...", "info");
             const zone = APP_CONFIG.monetag.zones[currentZoneIndex % APP_CONFIG.monetag.zones.length];
             const adFunc = `show_${zone}`;
             if (typeof window[adFunc] === 'function') {
-                try {
-                    await window[adFunc]();
-                    monetagCount++; currentZoneIndex++; userData.balance += APP_CONFIG.app.adReward;
-                    saveUserToStorage(); updateUI(); updateAdCounts(); playVibration();
-                    showToast(`🎉 ${APP_CONFIG.app.adReward} টাকা উপার্জন!`, "success");
-                } catch (e) { showToast("অ্যাড ত্রুটি", "error"); }
+                try { await window[adFunc](); monetagCount++; currentZoneIndex++; userData.balance += APP_CONFIG.app.adReward; saveUserToStorage(); updateUI(); updateAdCounts(); playVibration(); showToast(`🎉 ${APP_CONFIG.app.adReward} টাকা উপার্জন!`, "success"); loadLeaderboard(); } catch (e) { showToast("অ্যাড ত্রুটি", "error"); }
             } else { showToast("অ্যাড সিস্টেম প্রস্তুত হচ্ছে", "warning"); }
         }
         
@@ -476,33 +505,9 @@
                 userData.balance += sp.reward;
                 saveUserToStorage(); updateUI(); loadSponsors(); playVibration();
                 showToast(`🎉 ${sp.name} জয়েনে ${sp.reward} টাকা পেলেন!`, "success");
+                loadLeaderboard();
             }, 5000);
         };
-        
-        // ==================== LEADERBOARD (Daily Auto Change) ====================
-        function loadLeaderboard() {
-            let todayStr = new Date().toISOString().split('T')[0];
-            let seed = 0;
-            for (let i = 0; i < todayStr.length; i++) seed += todayStr.charCodeAt(i);
-            let fakeBalances = [28450, 21780, 18920, 15430, 12890, 10250, 8920, 7350, 5680, 4320];
-            let randomized = [...fakeBalances];
-            for (let i = randomized.length - 1; i > 0; i--) { let j = (seed + i) % (i + 1); [randomized[i], randomized[j]] = [randomized[j], randomized[i]]; }
-            let fakeUsers = APP_CONFIG.fakeLeaderboardNames.map((name, idx) => ({ name, balance: randomized[idx] + (seed % 500), avatar: name.charAt(0) }));
-            let realUsers = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                if (key && key.startsWith("user_")) {
-                    try { let u = JSON.parse(localStorage.getItem(key)); if (u && u.balance > 0) realUsers.push({ name: u.name, balance: u.balance, avatar: u.name?.charAt(0) || "U" }); } catch (e) { }
-                }
-            }
-            let all = [...realUsers, ...fakeUsers];
-            all.sort((a, b) => (b.balance || 0) - (a.balance || 0));
-            let top10 = all.slice(0, 10);
-            let container = document.getElementById("leaderboard-list");
-            if (container) {
-                container.innerHTML = top10.map((u, idx) => `<div class="leaderboard-item"><div class="leaderboard-rank ${idx === 0 ? 'rank-1' : ''}">${idx + 1}</div><div class="leaderboard-avatar">${u.avatar || '👤'}</div><div class="leaderboard-info"><div class="leaderboard-name">${u.name || 'User'}</div></div><div class="leaderboard-amount">৳${(u.balance || 0).toLocaleString()}</div></div>`).join("");
-            }
-        }
         
         // ==================== WITHDRAWAL ====================
         function loadWithdrawalHistory() {
@@ -522,10 +527,9 @@
             withdrawals.push({ amount, method, paymentDetail, status: "pending", requestedAt: new Date().toISOString() });
             localStorage.setItem(`withdrawals_${currentUser.id}`, JSON.stringify(withdrawals));
             userData.balance -= amount;
-            saveUserToStorage();
-            updateUI();
-            loadWithdrawalHistory();
+            saveUserToStorage(); updateUI(); loadWithdrawalHistory();
             showToast("উত্তোলন রিকোয়েস্ট জমা হয়েছে। ২৪-৪৮ ঘন্টার মধ্যে প্রসেস হবে।", "success");
+            loadLeaderboard();
         }
         
         function updateDynamicPaymentFields() {
@@ -534,7 +538,6 @@
             document.getElementById("payment-details-container").innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="withdraw-input mt-2">`;
         }
         
-        // ==================== SUPPORT (ONLY ONCE) ====================
         window.openSupportOnce = function() {
             if (supportClicked) { showToast("আপনি ইতিমধ্যে সাপোর্টে ক্লিক করেছেন!", "warning"); return; }
             supportClicked = true;
@@ -544,7 +547,6 @@
         
         // ==================== WHEEL ====================
         function initWheel() { wheelCanvas = document.getElementById("wheelCanvas"); if (wheelCanvas) { ctx = wheelCanvas.getContext("2d"); drawWheel(); } }
-        
         function drawWheel() {
             if (!ctx) return;
             let size = 300, center = 150, radius = 150, angleStep = (Math.PI * 2) / APP_CONFIG.wheelSegments.length;
@@ -560,22 +562,17 @@
             ctx.beginPath(); ctx.arc(center, center, 25, 0, Math.PI * 2); ctx.fillStyle = "white"; ctx.fill();
             ctx.fillStyle = "#1e293b"; ctx.font = "bold 28px Arial"; ctx.fillText("🎡", center - 12, center + 10);
         }
-        
         window.openWheelPage = function() { if (userData.balance < APP_CONFIG.app.spinMinBalance) { showToast(`স্পিন করতে ${APP_CONFIG.app.spinMinBalance} টাকা লাগবে`, "error"); return; } document.getElementById("wheel-page").classList.add("active"); };
         window.closeWheelPage = function() { document.getElementById("wheel-page").classList.remove("active"); };
-        
         window.startSpin = async function() {
             if (isSpinning) return;
             pendingSpin = true;
-            try {
-                if (typeof Adsgram !== 'undefined') { let ad = Adsgram.init({ blockId: APP_CONFIG.adsgram.blockId }); if (ad) await ad.show(); executeSpin(); return; }
-            } catch (e) { }
+            try { if (typeof Adsgram !== 'undefined') { let ad = Adsgram.init({ blockId: APP_CONFIG.adsgram.blockId }); if (ad) await ad.show(); executeSpin(); return; } } catch(e) {}
             let zone = APP_CONFIG.monetag.zones[currentZoneIndex % APP_CONFIG.monetag.zones.length];
             let adFunc = `show_${zone}`;
             if (typeof window[adFunc] === 'function') { await window[adFunc](); currentZoneIndex++; executeSpin(); return; }
             showToast("অ্যাড সমস্যা", "error"); pendingSpin = false;
         };
-        
         function executeSpin() {
             if (!pendingSpin) return;
             pendingSpin = false; isSpinning = true;
@@ -589,6 +586,7 @@
                     let final = currentAngle % (Math.PI * 2), idx = Math.floor(final / ((Math.PI * 2) / APP_CONFIG.wheelSegments.length)), reward = APP_CONFIG.wheelSegments[idx].value;
                     userData.balance += reward; saveUserToStorage(); updateUI(); canvasConfetti({ particleCount: 200, spread: 100 }); playVibration();
                     showToast(`🎉 জিতেছেন ${reward} টাকা!`, "success"); isSpinning = false; btn.disabled = false;
+                    loadLeaderboard();
                 }
             }
             requestAnimationFrame(animate);
@@ -608,13 +606,11 @@
         
         window.navigateTo = navigateTo;
         window.openWatchAdsPage = () => navigateTo("watch-ads-page");
-        
         window.joinTelegramChannel = function() {
             tg.openLink(APP_CONFIG.social.telegramChannel);
-            setTimeout(() => { userData.balance += APP_CONFIG.app.channelJoinBonus; saveUserToStorage(); updateUI(); showToast(`চ্যানেল জয়েন বোনাস ${APP_CONFIG.app.channelJoinBonus} টাকা!`, "success"); }, 5000);
+            setTimeout(() => { userData.balance += APP_CONFIG.app.channelJoinBonus; saveUserToStorage(); updateUI(); showToast(`চ্যানেল জয়েন বোনাস ${APP_CONFIG.app.channelJoinBonus} টাকা!`, "success"); loadLeaderboard(); }, 5000);
         };
         
-        // ==================== INITIALIZATION ====================
         window.onload = () => {
             initWheel();
             initTelegramApp();
@@ -622,7 +618,6 @@
             document.getElementById("withdraw-method")?.addEventListener("change", updateDynamicPaymentFields);
             setInterval(() => { if (currentUser) loadLeaderboard(); }, 30000);
         };
-        
         window.showMonetagAd = showMonetagAd;
     </script>
 </body>
